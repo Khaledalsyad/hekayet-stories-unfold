@@ -96,9 +96,9 @@ const StatsSection = () => {
                     whileInView={{ width: `${stat.percent}%` }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.2, delay: i * 0.15 + 0.3, ease: "easeOut" }}
-                    className="h-full rounded-full bg-gradient-to-r from-accent to-desert"
+                    className="h-full rounded-full"
                     style={{
-                      background: `linear-gradient(90deg, hsl(30 90% 67%), hsl(35 60% 50%))`,
+                      background: "linear-gradient(90deg, hsl(30, 90%, 67%), hsl(35, 60%, 50%))",
                     }}
                   />
                 </div>
