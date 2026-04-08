@@ -7,31 +7,55 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-4 bg-background/80 backdrop-blur-xl border-b border-border/50"
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className="fixed top-4 left-4 right-4 z-50 mx-auto max-w-7xl rounded-2xl bg-foreground/10 backdrop-blur-xl border border-foreground/15 px-6 md:px-8 py-3"
     >
-      <div className="flex items-center gap-2">
-        <span className="text-accent text-xl font-bold font-cairo">
-          {t("حكاية مكان", "Hekayet Makan")}
-        </span>
-      </div>
+      <div className="flex items-center justify-between">
+        {/* Logo */}
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center">
+            <span className="text-accent font-bold text-sm">حم</span>
+          </div>
+          <span className="text-foreground text-lg font-bold font-cairo">
+            {t("حكاية مكان", "Hekayet Makan")}
+          </span>
+        </div>
 
-      <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-        <a href="#videos" className="hover:text-accent transition-colors">{t("الحلقات", "Episodes")}</a>
-        <a href="#places" className="hover:text-accent transition-colors">{t("الأماكن", "Places")}</a>
-        <a href="#stats" className="hover:text-accent transition-colors">{t("الإحصائيات", "Statistics")}</a>
-        <a href="#team" className="hover:text-accent transition-colors">{t("الفريق", "Team")}</a>
-      </div>
+        {/* Center Nav Links */}
+        <div className="hidden md:flex items-center gap-8 text-sm text-foreground/70">
+          <a href="#videos" className="hover:text-foreground transition-colors duration-300">
+            {t("الحلقات", "Episodes")}
+          </a>
+          <a href="#places" className="hover:text-foreground transition-colors duration-300">
+            {t("الأماكن", "Places")}
+          </a>
+          <a href="#stats" className="hover:text-foreground transition-colors duration-300">
+            {t("الإحصائيات", "Statistics")}
+          </a>
+          <a href="#team" className="hover:text-foreground transition-colors duration-300">
+            {t("الفريق", "Team")}
+          </a>
+        </div>
 
-      <button
-        onClick={toggleLang}
-        className="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-muted/50 hover:bg-accent hover:text-accent-foreground transition-all duration-300 text-sm"
-      >
-        <Globe className="w-4 h-4" />
-        {lang === "ar" ? "EN" : "عربي"}
-      </button>
+        {/* Right side: Language toggle + CTA */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={toggleLang}
+            className="flex items-center gap-1.5 text-foreground/70 hover:text-foreground transition-colors duration-300 text-sm"
+          >
+            <Globe className="w-4 h-4" />
+            {lang === "ar" ? "EN" : "عربي"}
+          </button>
+          <a
+            href="#team"
+            className="hidden md:inline-flex items-center px-5 py-2 rounded-full border border-foreground/30 text-foreground text-sm hover:bg-foreground/10 transition-all duration-300"
+          >
+            {t("تواصل معنا", "Contact Us")}
+          </a>
+        </div>
+      </div>
     </motion.nav>
   );
 };
