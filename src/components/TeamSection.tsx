@@ -75,41 +75,33 @@ const TeamSection = () => {
           </h3>
         </motion.div>
 
-        {/* Leader - first member highlighted */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-col items-center mb-12"
-        >
-          <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors duration-300 mb-4">
-            <img src={team[0].img} alt={t(team[0].nameAr, team[0].nameEn)} className="w-full h-full object-cover" loading="lazy" />
-          </div>
-          <h3 className="text-xl font-bold font-cairo text-foreground">
-            {t(team[0].nameAr, team[0].nameEn)}
-          </h3>
-        </motion.div>
+        {/* All team members - infinite scrolling marquee */}
+        <div className="relative overflow-hidden py-8">
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-        {/* Rest of team */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-8">
-          {team.slice(1).map((member, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="flex flex-col items-center group"
-            >
-              <div className="relative w-28 h-28 rounded-full overflow-hidden border-2 border-accent/30 group-hover:border-accent transition-colors duration-300 mb-3">
-                <img src={member.img} alt={t(member.nameAr, member.nameEn)} className="w-full h-full object-cover" loading="lazy" />
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="flex gap-10 animate-marquee hover:[animation-play-state:paused]"
+          >
+            {[...team, ...team].map((member, i) => (
+              <div key={i} className="flex flex-col items-center flex-shrink-0 group cursor-pointer">
+                <div className="relative w-28 h-28 rounded-full overflow-hidden border-2 border-accent/30 group-hover:border-accent group-hover:shadow-[0_0_20px_hsl(var(--accent)/0.3)] transition-all duration-500 mb-3">
+                  <img
+                    src={member.img}
+                    alt={t(member.nameAr, member.nameEn)}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 className="text-sm font-bold font-cairo text-foreground text-center whitespace-nowrap opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+                  {t(member.nameAr, member.nameEn)}
+                </h3>
               </div>
-              <h3 className="text-base font-bold font-cairo text-foreground text-center">
-                {t(member.nameAr, member.nameEn)}
-              </h3>
-            </motion.div>
-          ))}
+            ))}
+          </motion.div>
         </div>
       </div>
 
