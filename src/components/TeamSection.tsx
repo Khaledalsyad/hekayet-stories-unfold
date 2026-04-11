@@ -45,6 +45,32 @@ const TeamSection = () => {
           </h2>
         </motion.div>
 
+        {/* Supervisor */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="cinematic-card flex flex-col items-center p-8 mb-14 max-w-sm mx-auto relative overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-accent/10 to-transparent pointer-events-none" />
+          <p className="text-accent text-xs tracking-[0.2em] uppercase mb-4 font-cairo z-10">
+            {t("المشرف على المشروع", "Project Supervisor")}
+          </p>
+          <div className="relative w-40 h-40 rounded-full overflow-hidden border-[3px] border-accent shadow-[0_0_30px_hsl(var(--accent)/0.3)] mb-4 z-10">
+            {supervisorImg ? (
+              <img src={supervisorImg} alt={t("المشرف", "Supervisor")} className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground text-sm font-cairo">
+                {t("صورة المشرف", "Supervisor Photo")}
+              </div>
+            )}
+          </div>
+          <h3 className="text-xl font-bold font-cairo text-foreground z-10">
+            {t("اسم الدكتور", "Supervisor Name")}
+          </h3>
+        </motion.div>
+
         {/* Leader - first member highlighted */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
