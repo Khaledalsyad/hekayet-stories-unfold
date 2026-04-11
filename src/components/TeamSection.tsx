@@ -11,6 +11,10 @@ import ahmedMahmoud from "@/assets/ahmed-mahmoud.jpg";
 import abdulrahmanFarag from "@/assets/abdulrahman-farag.jpg";
 import khaledMohamed from "@/assets/khaled-mohamed.jpg";
 
+// TODO: Replace with actual supervisor photo import
+// import supervisorPhoto from "@/assets/supervisor.jpg";
+const supervisorImg: string | null = null;
+
 const team = [
   { nameAr: "أحمد رامي ربيع", nameEn: "Ahmed Rami Rabie", img: ahmedRami },
   { nameAr: "أحمد وائل رجب", nameEn: "Ahmed Wael Ragab", img: ahmedWael },
