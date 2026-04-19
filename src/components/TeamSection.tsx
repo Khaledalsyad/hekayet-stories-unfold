@@ -75,8 +75,8 @@ const TeamSection = () => {
           </h3>
         </motion.div>
 
-        {/* Team grid - organized rows of square cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        {/* Team grid - circular portraits in organized rows */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10">
           {team.map((member, i) => (
             <motion.div
               key={i}
@@ -84,24 +84,19 @@ const TeamSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group cursor-pointer"
+              className="group cursor-pointer flex flex-col items-center"
             >
-              <div className="cinematic-card overflow-hidden">
-                <div className="relative aspect-square overflow-hidden">
-                  <img
-                    src={member.img}
-                    alt={t(member.nameAr, member.nameEn)}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3 text-center">
-                    <h3 className="text-sm font-bold font-cairo text-foreground group-hover:text-accent transition-colors duration-300">
-                      {t(member.nameAr, member.nameEn)}
-                    </h3>
-                  </div>
-                </div>
+              <div className="relative w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-accent/40 group-hover:border-accent group-hover:shadow-[0_0_30px_hsl(var(--accent)/0.4)] transition-all duration-500 mb-4">
+                <img
+                  src={member.img}
+                  alt={t(member.nameAr, member.nameEn)}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                />
               </div>
+              <h3 className="text-sm font-bold font-cairo text-foreground text-center group-hover:text-accent transition-colors duration-300">
+                {t(member.nameAr, member.nameEn)}
+              </h3>
             </motion.div>
           ))}
         </div>
