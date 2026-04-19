@@ -16,16 +16,16 @@ import khaledMohamed from "@/assets/khaled-mohamed.jpg";
 const supervisorImg: string | null = null;
 
 const team = [
-  { nameAr: "أحمد رامي ربيع", nameEn: "Ahmed Rami Rabie", img: ahmedRami },
-  { nameAr: "أحمد وائل رجب", nameEn: "Ahmed Wael Ragab", img: ahmedWael },
-  { nameAr: "الحسن علاء", nameEn: "Al-Hassan Alaa", img: hassanAlaa },
-  { nameAr: "أحمد صلاح الدين", nameEn: "Ahmed Salah El-Din", img: ahmedSalah },
-  { nameAr: "عبدالله فارس", nameEn: "Abdullah Fares", img: abdullahFares },
-  { nameAr: "أمين صلاح محمد", nameEn: "Amin Salah Mohamed", img: aminSalah },
-  { nameAr: "خالد عبدالله", nameEn: "Khaled Abdullah", img: khaledAbdullah },
-  { nameAr: "أحمد محمود", nameEn: "Ahmed Mahmoud", img: ahmedMahmoud },
+  { nameAr: "أحمد صلاح الدين", nameEn: "Ahmed Salah El-Din", img: ahmedRami },
+  { nameAr: "خالد محمد", nameEn: "Khaled Mohamed", img: ahmedWael },
+  { nameAr: "عبدالله فارس", nameEn: "Abdullah Fares", img: hassanAlaa },
+  { nameAr: "خالد عبدالله", nameEn: "Khaled Abdullah", img: ahmedSalah },
+  { nameAr: "الحسن علاء", nameEn: "Al-Hassan Alaa", img: abdullahFares },
+  { nameAr: "أمين صلاح الدين", nameEn: "Amin Salah El-Din", img: aminSalah },
+  { nameAr: "أحمد محمود", nameEn: "Ahmed Mahmoud", img: khaledAbdullah },
+  { nameAr: "أحمد رامي ربيع", nameEn: "Ahmed Rami Rabie", img: ahmedMahmoud },
   { nameAr: "عبدالرحمن فرج", nameEn: "Abdulrahman Farag", img: abdulrahmanFarag },
-  { nameAr: "خالد محمد", nameEn: "Khaled Mohamed", img: khaledMohamed },
+  { nameAr: "أحمد وائل رجب", nameEn: "Ahmed Wael Ragab", img: khaledMohamed },
 ];
 
 const TeamSection = () => {
