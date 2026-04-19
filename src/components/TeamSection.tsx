@@ -10,10 +10,9 @@ import khaledAbdullah from "@/assets/khaled-abdullah.jpg";
 import ahmedMahmoud from "@/assets/ahmed-mahmoud.jpg";
 import abdulrahmanFarag from "@/assets/abdulrahman-farag.jpg";
 import khaledMohamed from "@/assets/khaled-mohamed.jpg";
+import supervisorPhoto from "@/assets/supervisor.jpg";
 
-// TODO: Replace with actual supervisor photo import
-// import supervisorPhoto from "@/assets/supervisor.jpg";
-const supervisorImg: string | null = null;
+const supervisorImg: string | null = supervisorPhoto;
 
 const team = [
   { nameAr: "خالد عبدالله", nameEn: "Khaled Abdullah", img: ahmedRami },
@@ -71,8 +70,11 @@ const TeamSection = () => {
             )}
           </div>
           <h3 className="text-xl font-bold font-cairo text-foreground z-10">
-            {t("اسم الدكتور", "Supervisor Name")}
+            {t("د. محمود شهاب", "Dr. Mahmoud Shehab")}
           </h3>
+          <p className="text-xs text-muted-foreground font-cairo mt-1 z-10">
+            {t("مشرف المشروع", "Project Supervisor")}
+          </p>
         </motion.div>
 
         {/* Team grid - circular portraits in organized rows */}
