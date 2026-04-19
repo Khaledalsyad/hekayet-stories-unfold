@@ -75,33 +75,35 @@ const TeamSection = () => {
           </h3>
         </motion.div>
 
-        {/* All team members - infinite scrolling marquee */}
-        <div className="relative overflow-hidden py-8">
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex gap-10 animate-marquee hover:[animation-play-state:paused]"
-          >
-            {[...team, ...team].map((member, i) => (
-              <div key={i} className="flex flex-col items-center flex-shrink-0 group cursor-pointer">
-                <div className="relative w-28 h-28 rounded-full overflow-hidden border-2 border-accent/30 group-hover:border-accent group-hover:shadow-[0_0_20px_hsl(var(--accent)/0.3)] transition-all duration-500 mb-3">
+        {/* Team grid - organized rows of square cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          {team.map((member, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              className="group cursor-pointer"
+            >
+              <div className="cinematic-card overflow-hidden">
+                <div className="relative aspect-square overflow-hidden">
                   <img
                     src={member.img}
                     alt={t(member.nameAr, member.nameEn)}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     loading="lazy"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3 text-center">
+                    <h3 className="text-sm font-bold font-cairo text-foreground group-hover:text-accent transition-colors duration-300">
+                      {t(member.nameAr, member.nameEn)}
+                    </h3>
+                  </div>
                 </div>
-                <h3 className="text-sm font-bold font-cairo text-foreground text-center whitespace-nowrap opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                  {t(member.nameAr, member.nameEn)}
-                </h3>
               </div>
-            ))}
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
       </div>
 
