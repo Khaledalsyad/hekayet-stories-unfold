@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Sphere, Stars as DreiStars } from "@react-three/drei";
 import * as THREE from "three";
-import { BookOpen, Users, Eye, Star, TrendingUp } from "lucide-react";
+import { BookOpen, Users, Eye, Star, TrendingUp, Ghost, Leaf, Compass, Landmark, type LucideIcon } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -28,11 +28,11 @@ interface SiteStat {
   value: number;
 }
 
-const moodMeta: Record<Mood, { ar: string; en: string; emoji: string; color: string; hex: string }> = {
-  mystery: { ar: "غموض", en: "Mystery", emoji: "👻", color: "bg-purple-500", hex: "#a855f7" },
-  calm: { ar: "هدوء", en: "Calm", emoji: "🌿", color: "bg-emerald-500", hex: "#10b981" },
-  adventure: { ar: "مغامرة", en: "Adventure", emoji: "🧭", color: "bg-orange-500", hex: "#f97316" },
-  history: { ar: "تاريخ", en: "History", emoji: "🏺", color: "bg-amber-600", hex: "#d97706" },
+const moodMeta: Record<Mood, { ar: string; en: string; Icon: LucideIcon; color: string; hex: string }> = {
+  mystery: { ar: "غموض", en: "Mystery", Icon: Ghost, color: "bg-purple-500", hex: "#a855f7" },
+  calm: { ar: "هدوء", en: "Calm", Icon: Leaf, color: "bg-emerald-500", hex: "#10b981" },
+  adventure: { ar: "مغامرة", en: "Adventure", Icon: Compass, color: "bg-orange-500", hex: "#f97316" },
+  history: { ar: "تاريخ", en: "History", Icon: Landmark, color: "bg-amber-600", hex: "#d97706" },
 };
 
 const formatNumber = (n: number) => {
