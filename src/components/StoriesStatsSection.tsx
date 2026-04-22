@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, Suspense } from "react";
 import { motion } from "framer-motion";
-import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sphere, Stars as DreiStars } from "@react-three/drei";
 import * as THREE from "three";
 import { BookOpen, Users, Eye, Star, TrendingUp, Ghost, Leaf, Compass, Landmark, type LucideIcon } from "lucide-react";
