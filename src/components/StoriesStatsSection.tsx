@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState, Suspense } from "react";
+import { useEffect, useMemo, useRef, useState, Suspense } from "react";
 import { motion } from "framer-motion";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sphere, Stars as DreiStars } from "@react-three/drei";
 import * as THREE from "three";
 import { BookOpen, Users, Eye, Star, TrendingUp, Ghost, Leaf, Compass, Landmark, type LucideIcon } from "lucide-react";
@@ -54,6 +54,239 @@ const latLngToVec3 = (mapX: number, mapY: number, radius: number) => {
   return [x, y, z] as [number, number, number];
 };
 
+// Pulsing marker (ring expands & fades)
+const Marker = ({
+  position,
+  color,
+  isActive,
+  onClick,
+}: {
+  position: [number, number, number];
+  color: string;
+  isActive: boolean;
+  onClick: () => void;
+}) => {
+  const ringRef = useRef<THREE.Mesh>(null);
+  const ring2Ref = useRef<THREE.Mesh>(null);
+
+  // Compute rotation so rings face outward from sphere center
+  const rotation = useMemo<[number, number, number]>(() => {
+    const dir = new THREE.Vector3(...position).normalize();
+    const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), dir);
+    const e = new THREE.Euler().setFromQuaternion(q);
+    return [e.x, e.y, e.z];
+  }, [position]);
+
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime();
+    const pulse = (t % 2) / 2;
+    if (ringRef.current) {
+      const s = 0.5 + pulse * 2.5;
+      ringRef.current.scale.set(s, s, s);
+      (ringRef.current.material as THREE.MeshBasicMaterial).opacity = 0.6 * (1 - pulse);
+    }
+    const pulse2 = ((t + 1) % 2) / 2;
+    if (ring2Ref.current) {
+      const s = 0.5 + pulse2 * 2.5;
+      ring2Ref.current.scale.set(s, s, s);
+      (ring2Ref.current.material as THREE.MeshBasicMaterial).opacity = 0.4 * (1 - pulse2);
+    }
+  });
+
+  return (
+    <group position={position} rotation={rotation}>
+      {/* Outer glow halo */}
+      <mesh>
+        <sphereGeometry args={[isActive ? 0.13 : 0.1, 16, 16]} />
+        <meshBasicMaterial color={color} transparent opacity={0.25} />
+      </mesh>
+      {/* Inner core dot */}
+      <mesh
+        onClick={onClick}
+        onPointerOver={(e) => {
+          e.stopPropagation();
+          document.body.style.cursor = "pointer";
+        }}
+        onPointerOut={() => (document.body.style.cursor = "default")}
+      >
+        <sphereGeometry args={[isActive ? 0.06 : 0.045, 16, 16]} />
+        <meshBasicMaterial color="#ffffff" />
+      </mesh>
+      {/* Static ring outline (already oriented via group rotation) */}
+      <mesh>
+        <ringGeometry args={[0.07, 0.085, 32]} />
+        <meshBasicMaterial color={color} transparent opacity={0.9} side={THREE.DoubleSide} />
+      </mesh>
+      {/* Animated pulse rings */}
+      <mesh ref={ringRef}>
+        <ringGeometry args={[0.08, 0.1, 32]} />
+        <meshBasicMaterial color={color} transparent opacity={0.5} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh ref={ring2Ref}>
+        <ringGeometry args={[0.08, 0.1, 32]} />
+        <meshBasicMaterial color={color} transparent opacity={0.4} side={THREE.DoubleSide} />
+      </mesh>
+    </group>
+  );
+};
+
+// Procedural earth-like material using noise (no external textures needed)
+const EarthMaterial = () => {
+  const material = useMemo(() => {
+    const m = new THREE.ShaderMaterial({
+      uniforms: {
+        uTime: { value: 0 },
+      },
+      vertexShader: `
+        varying vec3 vNormal;
+        varying vec3 vPos;
+        void main() {
+          vNormal = normalize(normalMatrix * normal);
+          vPos = position;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        varying vec3 vNormal;
+        varying vec3 vPos;
+
+        // Simple 3D hash noise
+        float hash(vec3 p) {
+          p = fract(p * 0.3183099 + 0.1);
+          p *= 17.0;
+          return fract(p.x * p.y * p.z * (p.x + p.y + p.z));
+        }
+        float noise(vec3 x) {
+          vec3 p = floor(x);
+          vec3 f = fract(x);
+          f = f*f*(3.0-2.0*f);
+          return mix(mix(mix(hash(p+vec3(0,0,0)), hash(p+vec3(1,0,0)), f.x),
+                         mix(hash(p+vec3(0,1,0)), hash(p+vec3(1,1,0)), f.x), f.y),
+                     mix(mix(hash(p+vec3(0,0,1)), hash(p+vec3(1,0,1)), f.x),
+                         mix(hash(p+vec3(0,1,1)), hash(p+vec3(1,1,1)), f.x), f.y), f.z);
+        }
+        float fbm(vec3 p) {
+          float v = 0.0;
+          float a = 0.5;
+          for (int i = 0; i < 5; i++) {
+            v += a * noise(p);
+            p *= 2.0;
+            a *= 0.5;
+          }
+          return v;
+        }
+
+        void main() {
+          // Continents via fbm
+          float n = fbm(vPos * 1.4);
+          float land = smoothstep(0.48, 0.55, n);
+
+          // Ocean color (deep blue)
+          vec3 ocean = mix(vec3(0.02, 0.05, 0.12), vec3(0.05, 0.12, 0.22), n);
+          // Land color (greenish-brown with variation)
+          float detail = fbm(vPos * 6.0);
+          vec3 landCol = mix(vec3(0.12, 0.18, 0.10), vec3(0.25, 0.22, 0.14), detail);
+
+          vec3 base = mix(ocean, landCol, land);
+
+          // Lighting
+          vec3 lightDir = normalize(vec3(0.6, 0.4, 0.8));
+          float diff = max(dot(vNormal, lightDir), 0.0);
+          float ambient = 0.25;
+          vec3 color = base * (ambient + diff * 0.9);
+
+          // Rim light (atmosphere)
+          float rim = pow(1.0 - max(dot(vNormal, vec3(0.0, 0.0, 1.0)), 0.0), 2.5);
+          color += vec3(0.2, 0.7, 0.8) * rim * 0.4;
+
+          gl_FragColor = vec4(color, 1.0);
+        }
+      `,
+    });
+    return m;
+  }, []);
+  return <primitive object={material} attach="material" />;
+};
+
+// Atmosphere shell (Fresnel glow)
+const Atmosphere = ({ radius }: { radius: number }) => {
+  const material = useMemo(() => {
+    return new THREE.ShaderMaterial({
+      transparent: true,
+      side: THREE.BackSide,
+      depthWrite: false,
+      uniforms: {},
+      vertexShader: `
+        varying vec3 vNormal;
+        void main() {
+          vNormal = normalize(normalMatrix * normal);
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        varying vec3 vNormal;
+        void main() {
+          float intensity = pow(0.65 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.5);
+          gl_FragColor = vec4(0.36, 0.85, 0.95, 1.0) * intensity;
+        }
+      `,
+    });
+  }, []);
+  return (
+    <mesh scale={radius}>
+      <sphereGeometry args={[1, 64, 64]} />
+      <primitive object={material} attach="material" />
+    </mesh>
+  );
+};
+
+// Auto-rotating globe group
+const RotatingGlobe = ({
+  places,
+  onSelect,
+  selectedId,
+  radius,
+}: {
+  places: Place[];
+  onSelect: (p: Place) => void;
+  selectedId: string | null;
+  radius: number;
+}) => {
+  const groupRef = useRef<THREE.Group>(null);
+  useFrame((_, delta) => {
+    if (groupRef.current) groupRef.current.rotation.y += delta * 0.08;
+  });
+
+  return (
+    <group ref={groupRef}>
+      {/* Earth */}
+      <Sphere args={[radius, 96, 96]}>
+        <EarthMaterial />
+      </Sphere>
+
+      {/* Subtle wireframe grid on top */}
+      <Sphere args={[radius * 1.001, 24, 24]}>
+        <meshBasicMaterial color="#5eead4" wireframe transparent opacity={0.08} />
+      </Sphere>
+
+      {/* Markers */}
+      {places.map((p) => {
+        const pos = latLngToVec3(p.map_x, p.map_y, radius * 1.015);
+        const color = moodMeta[p.mood].hex;
+        return (
+          <Marker
+            key={p.id}
+            position={pos}
+            color={color}
+            isActive={selectedId === p.id}
+            onClick={() => onSelect(p)}
+          />
+        );
+      })}
+    </group>
+  );
+};
+
 const Globe = ({
   places,
   onSelect,
@@ -66,46 +299,28 @@ const Globe = ({
   const radius = 2;
   return (
     <>
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[5, 3, 5]} intensity={0.8} />
-      <DreiStars radius={50} depth={50} count={2000} factor={4} fade speed={1} />
+      <ambientLight intensity={0.35} />
+      <directionalLight position={[5, 3, 5]} intensity={1.1} color="#ffffff" />
+      <directionalLight position={[-5, -2, -3]} intensity={0.3} color="#5eead4" />
+      <DreiStars radius={80} depth={60} count={3500} factor={4} fade speed={1} />
 
-      {/* Globe */}
-      <Sphere args={[radius, 64, 64]}>
-        <meshStandardMaterial color="#0f172a" roughness={0.9} metalness={0.1} />
-      </Sphere>
+      <RotatingGlobe
+        places={places}
+        onSelect={onSelect}
+        selectedId={selectedId}
+        radius={radius}
+      />
 
-      {/* Wireframe overlay */}
-      <Sphere args={[radius * 1.001, 32, 32]}>
-        <meshBasicMaterial color="#1e293b" wireframe transparent opacity={0.4} />
-      </Sphere>
+      {/* Atmosphere glow */}
+      <Atmosphere radius={radius * 1.15} />
 
-      {/* Glow atmosphere */}
-      <Sphere args={[radius * 1.05, 32, 32]}>
-        <meshBasicMaterial color="#5eead4" transparent opacity={0.05} side={THREE.BackSide} />
-      </Sphere>
-
-      {/* Markers */}
-      {places.map((p) => {
-        const pos = latLngToVec3(p.map_x, p.map_y, radius * 1.02);
-        const color = moodMeta[p.mood].hex;
-        const isActive = selectedId === p.id;
-        return (
-          <group key={p.id} position={pos}>
-            <mesh onClick={() => onSelect(p)} onPointerOver={(e) => (e.stopPropagation(), (document.body.style.cursor = "pointer"))} onPointerOut={() => (document.body.style.cursor = "default")}>
-              <sphereGeometry args={[isActive ? 0.08 : 0.05, 16, 16]} />
-              <meshBasicMaterial color={color} />
-            </mesh>
-            {/* Pulse */}
-            <mesh>
-              <sphereGeometry args={[0.12, 16, 16]} />
-              <meshBasicMaterial color={color} transparent opacity={0.25} />
-            </mesh>
-          </group>
-        );
-      })}
-
-      <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.6} />
+      <OrbitControls
+        enableZoom={false}
+        enablePan={false}
+        rotateSpeed={0.5}
+        minPolarAngle={Math.PI / 3}
+        maxPolarAngle={(2 * Math.PI) / 3}
+      />
     </>
   );
 };
