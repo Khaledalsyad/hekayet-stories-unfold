@@ -14,7 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      site_stats: {
+        Row: {
+          id: string
+          key: string
+          updated_at: string
+          value: number
+        }
+        Insert: {
+          id?: string
+          key: string
+          updated_at?: string
+          value?: number
+        }
+        Update: {
+          id?: string
+          key?: string
+          updated_at?: string
+          value?: number
+        }
+        Relationships: []
+      }
+      story_places: {
+        Row: {
+          created_at: string
+          id: string
+          map_x: number
+          map_y: number
+          mood: string
+          name_ar: string
+          name_en: string
+          rating: number
+          region_ar: string
+          region_en: string
+          reviews_count: number
+          views: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          map_x: number
+          map_y: number
+          mood: string
+          name_ar: string
+          name_en: string
+          rating?: number
+          region_ar: string
+          region_en: string
+          reviews_count?: number
+          views?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          map_x?: number
+          map_y?: number
+          mood?: string
+          name_ar?: string
+          name_en?: string
+          rating?: number
+          region_ar?: string
+          region_en?: string
+          reviews_count?: number
+          views?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
