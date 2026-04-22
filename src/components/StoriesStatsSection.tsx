@@ -69,15 +69,17 @@ const Marker = ({
   const ringRef = useRef<THREE.Mesh>(null);
   const ring2Ref = useRef<THREE.Mesh>(null);
 
-  // Orient rings to face outward from sphere center
-  const lookAt = useMemo(() => {
-    const v = new THREE.Vector3(...position).multiplyScalar(2);
-    return v;
+  // Compute rotation so rings face outward from sphere center
+  const rotation = useMemo<[number, number, number]>(() => {
+    const dir = new THREE.Vector3(...position).normalize();
+    const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), dir);
+    const e = new THREE.Euler().setFromQuaternion(q);
+    return [e.x, e.y, e.z];
   }, [position]);
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
-    const pulse = (t % 2) / 2; // 0..1
+    const pulse = (t % 2) / 2;
     if (ringRef.current) {
       const s = 0.5 + pulse * 2.5;
       ringRef.current.scale.set(s, s, s);
@@ -92,7 +94,7 @@ const Marker = ({
   });
 
   return (
-    <group position={position}>
+    <group position={position} rotation={rotation}>
       {/* Outer glow halo */}
       <mesh>
         <sphereGeometry args={[isActive ? 0.13 : 0.1, 16, 16]} />
@@ -110,17 +112,17 @@ const Marker = ({
         <sphereGeometry args={[isActive ? 0.06 : 0.045, 16, 16]} />
         <meshBasicMaterial color="#ffffff" />
       </mesh>
-      {/* White ring outline */}
-      <mesh lookAt={lookAt}>
+      {/* Static ring outline (already oriented via group rotation) */}
+      <mesh>
         <ringGeometry args={[0.07, 0.085, 32]} />
         <meshBasicMaterial color={color} transparent opacity={0.9} side={THREE.DoubleSide} />
       </mesh>
       {/* Animated pulse rings */}
-      <mesh ref={ringRef} lookAt={lookAt}>
+      <mesh ref={ringRef}>
         <ringGeometry args={[0.08, 0.1, 32]} />
         <meshBasicMaterial color={color} transparent opacity={0.5} side={THREE.DoubleSide} />
       </mesh>
-      <mesh ref={ring2Ref} lookAt={lookAt}>
+      <mesh ref={ring2Ref}>
         <ringGeometry args={[0.08, 0.1, 32]} />
         <meshBasicMaterial color={color} transparent opacity={0.4} side={THREE.DoubleSide} />
       </mesh>
