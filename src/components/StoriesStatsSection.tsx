@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Sphere, Stars as DreiStars } from "@react-three/drei";
 import * as THREE from "three";
-import { BookOpen, Users, Eye, Star, TrendingUp } from "lucide-react";
+import { BookOpen, Users, Eye, Star, TrendingUp, Ghost, Leaf, Compass, Landmark, type LucideIcon } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -28,11 +28,11 @@ interface SiteStat {
   value: number;
 }
 
-const moodMeta: Record<Mood, { ar: string; en: string; emoji: string; color: string; hex: string }> = {
-  mystery: { ar: "غموض", en: "Mystery", emoji: "👻", color: "bg-purple-500", hex: "#a855f7" },
-  calm: { ar: "هدوء", en: "Calm", emoji: "🌿", color: "bg-emerald-500", hex: "#10b981" },
-  adventure: { ar: "مغامرة", en: "Adventure", emoji: "🧭", color: "bg-orange-500", hex: "#f97316" },
-  history: { ar: "تاريخ", en: "History", emoji: "🏺", color: "bg-amber-600", hex: "#d97706" },
+const moodMeta: Record<Mood, { ar: string; en: string; Icon: LucideIcon; color: string; hex: string }> = {
+  mystery: { ar: "غموض", en: "Mystery", Icon: Ghost, color: "bg-purple-500", hex: "#a855f7" },
+  calm: { ar: "هدوء", en: "Calm", Icon: Leaf, color: "bg-emerald-500", hex: "#10b981" },
+  adventure: { ar: "مغامرة", en: "Adventure", Icon: Compass, color: "bg-orange-500", hex: "#f97316" },
+  history: { ar: "تاريخ", en: "History", Icon: Landmark, color: "bg-amber-600", hex: "#d97706" },
 };
 
 const formatNumber = (n: number) => {
@@ -254,11 +254,16 @@ const StoriesStatsSection = () => {
                       {t(selected.name_ar, selected.name_en)}
                     </h4>
                   </div>
-                  <span
-                    className={`text-[10px] font-cairo px-2 py-0.5 rounded-full text-white ${moodMeta[selected.mood].color}`}
-                  >
-                    {moodMeta[selected.mood].emoji} {t(moodMeta[selected.mood].ar, moodMeta[selected.mood].en)}
-                  </span>
+                  {(() => {
+                    const M = moodMeta[selected.mood];
+                    const MIcon = M.Icon;
+                    return (
+                      <span className={`inline-flex items-center gap-1 text-[10px] font-cairo px-2 py-0.5 rounded-full text-white ${M.color}`}>
+                        <MIcon className="w-3 h-3" />
+                        {t(M.ar, M.en)}
+                      </span>
+                    );
+                  })()}
                 </div>
                 <div className="flex items-center justify-between text-xs font-cairo">
                   <span className="flex items-center gap-1 text-muted-foreground">
@@ -352,20 +357,25 @@ const StoriesStatsSection = () => {
                 ))}
               </div>
               <div className="grid grid-cols-2 gap-3">
-                {moodDistribution.map((m) => (
-                  <div key={m.mood} className="flex items-center gap-2">
-                    <span
-                      className="w-2.5 h-2.5 rounded-full shrink-0"
-                      style={{ backgroundColor: moodMeta[m.mood].hex }}
-                    />
-                    <span className="text-xs font-cairo text-muted-foreground">
-                      {moodMeta[m.mood].emoji} {t(moodMeta[m.mood].ar, moodMeta[m.mood].en)}
-                    </span>
-                    <span className="text-xs font-cairo text-foreground font-semibold ms-auto">
-                      {m.pct}%
-                    </span>
-                  </div>
-                ))}
+                {moodDistribution.map((m) => {
+                  const M = moodMeta[m.mood];
+                  const MIcon = M.Icon;
+                  return (
+                    <div key={m.mood} className="flex items-center gap-2">
+                      <span
+                        className="w-2.5 h-2.5 rounded-full shrink-0"
+                        style={{ backgroundColor: M.hex }}
+                      />
+                      <span className="inline-flex items-center gap-1 text-xs font-cairo text-muted-foreground">
+                        <MIcon className="w-3.5 h-3.5" style={{ color: M.hex }} />
+                        {t(M.ar, M.en)}
+                      </span>
+                      <span className="text-xs font-cairo text-foreground font-semibold ms-auto">
+                        {m.pct}%
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </motion.div>
           </div>
