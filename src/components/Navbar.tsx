@@ -1,6 +1,7 @@
 import { useLang } from "@/contexts/LanguageContext";
 import { Globe } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { lang, toggleLang, t } = useLang();
@@ -31,9 +32,9 @@ const Navbar = () => {
           <a href="#places" className="hover:text-foreground transition-colors duration-300">
             {t("الأماكن", "Places")}
           </a>
-          <a href="#stats" className="hover:text-foreground transition-colors duration-300">
+          <Link to="/stats" className="hover:text-foreground transition-colors duration-300">
             {t("الإحصائيات", "Statistics")}
-          </a>
+          </Link>
           <a href="#team" className="hover:text-foreground transition-colors duration-300">
             {t("الفريق", "Team")}
           </a>
