@@ -158,6 +158,139 @@ const Stars = ({ rating, size = "sm" }: { rating: number; size?: "sm" | "md" }) 
   );
 };
 
+// Recommendation engine: scores other places based on similarity to current.
+// Designed to be extensible (later can mix user behavior signals).
+interface Recommendation {
+  place: Place;
+  score: number;
+  reasonAr: string;
+  reasonEn: string;
+}
+
+const getRecommendations = (current: Place, all: Place[], limit = 3): Recommendation[] => {
+  return all
+    .filter((p) => p.id !== current.id)
+    .map<Recommendation>((p) => {
+      let score = 0;
+      const reasons: { ar: string; en: string }[] = [];
+
+      if (p.mood === current.mood) {
+        score += 5;
+        reasons.push({
+          ar: `لأنك مهتم بـ${moodConfig[current.mood].ar}`,
+          en: `Because you like ${moodConfig[current.mood].en}`,
+        });
+      }
+      if (p.category === current.category) {
+        score += 4;
+        reasons.push({
+          ar: `نفس نوع المكان (${categoryLabel[current.category].ar})`,
+          en: `Same type (${categoryLabel[current.category].en})`,
+        });
+      }
+      // Tiny rating boost as tie-breaker / quality signal
+      score += p.rating * 0.2;
+
+      const reason = reasons[0] ?? {
+        ar: "مقترح بناءً على التقييم العالي",
+        en: "Suggested based on high rating",
+      };
+      return { place: p, score, reasonAr: reason.ar, reasonEn: reason.en };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit);
+};
+
+const RecommendedPlaces = ({
+  current,
+  onSelect,
+}: {
+  current: Place;
+  onSelect: (p: Place) => void;
+}) => {
+  const { t, lang } = useLang();
+  const recs = useMemo(() => getRecommendations(current, places, 3), [current]);
+
+  if (recs.length === 0) return null;
+
+  return (
+    <div className="px-6 md:px-8 pb-8 pt-2 md:col-span-2 border-t border-border">
+      <div className="flex items-center gap-2 mt-6 mb-5">
+        <Sparkles className="w-4 h-4 text-accent" />
+        <h4 className="text-lg font-bold font-cairo">
+          {t("أماكن قد تعجبك", "You may also like")}
+        </h4>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {recs.map((rec, i) => {
+          const p = rec.place;
+          const mood = moodConfig[p.mood];
+          return (
+            <motion.button
+              key={p.id}
+              type="button"
+              onClick={() => onSelect(p)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: i * 0.1, ease: "easeOut" }}
+              className="group cinematic-card text-start flex flex-col overflow-hidden relative"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src={p.img}
+                  alt={t(p.titleAr, p.titleEn)}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+
+                {/* Recommended badge */}
+                <div
+                  className={`absolute top-2 ${lang === "ar" ? "right-2" : "left-2"} px-2 py-0.5 rounded-full text-[10px] font-bold font-cairo bg-accent text-accent-foreground shadow-lg flex items-center gap-1`}
+                >
+                  <Sparkles className="w-3 h-3" />
+                  {t("مقترح لك", "For you")}
+                </div>
+
+                {/* Mood badge */}
+                <div
+                  className={`absolute top-2 ${lang === "ar" ? "left-2" : "right-2"} px-2 py-0.5 rounded-full text-[10px] font-bold font-cairo ${mood.classes}`}
+                >
+                  {t(mood.ar, mood.en)}
+                </div>
+
+                {/* Reason overlay on hover */}
+                <div className="absolute inset-0 bg-background/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-3">
+                  <p className="text-center text-sm font-cairo text-foreground leading-relaxed">
+                    <Sparkles className="w-4 h-4 text-accent inline-block mb-1 me-1" />
+                    <br />
+                    {t(rec.reasonAr, rec.reasonEn)}
+                  </p>
+                </div>
+              </div>
+              <div className="p-3">
+                <h5 className="font-bold font-cairo text-sm text-foreground mb-1 truncate">
+                  {t(p.titleAr, p.titleEn)}
+                </h5>
+                <div className="flex items-center justify-between text-[11px] text-muted-foreground font-cairo">
+                  <span className="flex items-center gap-1">
+                    <MapPin className="w-3 h-3 text-accent" />
+                    {t(p.locationAr, p.locationEn)}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Star className="w-3 h-3 fill-accent text-accent" />
+                    {p.rating}
+                  </span>
+                </div>
+              </div>
+            </motion.button>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
 const PlacesSection = () => {
   const { t, lang } = useLang();
   const [active, setActive] = useState<Place | null>(null);
