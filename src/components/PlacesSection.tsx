@@ -1,7 +1,7 @@
 import { useLang } from "@/contexts/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { Clock, Star, X, MapPin, Volume2, VolumeX } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Clock, Star, X, MapPin, Volume2, VolumeX, Sparkles } from "lucide-react";
 import place1 from "@/assets/place-1.jpg";
 import place2 from "@/assets/place-2.jpg";
 import place3 from "@/assets/place-3.jpg";
