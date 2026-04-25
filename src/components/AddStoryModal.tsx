@@ -92,7 +92,14 @@ const AddStoryModal = ({ onCreated }: AddStoryModalProps) => {
       }
 
       const { error } = await supabase.from("user_stories").insert([
-        { ...parsed.data, image_url },
+        {
+          title,
+          description,
+          location,
+          mood,
+          user_name: userName,
+          image_url: image_url ?? undefined,
+        },
       ]);
       if (error) throw error;
 
