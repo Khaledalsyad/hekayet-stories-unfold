@@ -459,6 +459,8 @@ const PlacesSection = () => {
                   </div>
                 </div>
               </div>
+
+              <RecommendedPlaces current={active} onSelect={(p) => setActive(p)} />
             </motion.div>
           </motion.div>
         )}
