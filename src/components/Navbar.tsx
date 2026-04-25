@@ -26,18 +26,18 @@ const Navbar = () => {
 
         {/* Center Nav Links */}
         <div className="hidden md:flex items-center gap-8 text-sm text-foreground/70">
-          <a href="#videos" className="hover:text-foreground transition-colors duration-300">
+          <Link to="/#videos" className="hover:text-foreground transition-colors duration-300">
             {t("الحلقات", "Episodes")}
-          </a>
-          <a href="#places" className="hover:text-foreground transition-colors duration-300">
+          </Link>
+          <Link to="/#places" className="hover:text-foreground transition-colors duration-300">
             {t("الأماكن", "Places")}
-          </a>
+          </Link>
           <Link to="/stats" className="hover:text-foreground transition-colors duration-300">
             {t("الإحصائيات", "Statistics")}
           </Link>
-          <a href="#team" className="hover:text-foreground transition-colors duration-300">
+          <Link to="/#team" className="hover:text-foreground transition-colors duration-300">
             {t("الفريق", "Team")}
-          </a>
+          </Link>
         </div>
 
         {/* Right side: Language toggle + CTA */}
@@ -49,12 +49,12 @@ const Navbar = () => {
             <Globe className="w-4 h-4" />
             {lang === "ar" ? "EN" : "عربي"}
           </button>
-          <a
-            href="#team"
+          <Link
+            to="/#team"
             className="hidden md:inline-flex items-center px-5 py-2 rounded-full border border-foreground/30 text-foreground text-sm hover:bg-foreground/10 transition-all duration-300"
           >
             {t("تواصل معنا", "Contact Us")}
-          </a>
+          </Link>
         </div>
       </div>
     </motion.nav>

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import VideoSection from "@/components/VideoSection";
@@ -7,6 +9,18 @@ import StoriesSection from "@/components/StoriesSection";
 import TeamSection from "@/components/TeamSection";
 
 const Index = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 100);
+      }
+    }
+  }, [location]);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
