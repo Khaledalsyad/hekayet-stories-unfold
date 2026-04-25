@@ -78,6 +78,7 @@ const places: Place[] = [
     locationEn: "Fayoum, Egypt",
     img: place1,
     mood: "mystery",
+    category: "desert",
     duration: "3-4",
     rating: 4.8,
     reviewsCount: 240,
