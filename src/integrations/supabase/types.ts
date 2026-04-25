@@ -80,12 +80,48 @@ export type Database = {
         }
         Relationships: []
       }
+      user_stories: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          image_url: string | null
+          likes: number
+          location: string
+          mood: string
+          title: string
+          user_name: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          id?: string
+          image_url?: string | null
+          likes?: number
+          location: string
+          mood: string
+          title: string
+          user_name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          image_url?: string | null
+          likes?: number
+          location?: string
+          mood?: string
+          title?: string
+          user_name?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_story_likes: { Args: { story_id: string }; Returns: number }
     }
     Enums: {
       [_ in never]: never
