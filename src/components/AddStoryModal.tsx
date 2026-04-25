@@ -91,10 +91,9 @@ const AddStoryModal = ({ onCreated }: AddStoryModalProps) => {
         image_url = data.publicUrl;
       }
 
-      const { error } = await supabase.from("user_stories").insert({
-        ...parsed.data,
-        image_url,
-      });
+      const { error } = await supabase.from("user_stories").insert([
+        { ...parsed.data, image_url },
+      ]);
       if (error) throw error;
 
       toast.success(t("تم نشر حكايتك بنجاح", "Your story was published"));
