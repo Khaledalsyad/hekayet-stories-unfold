@@ -8,6 +8,7 @@ import place3 from "@/assets/place-3.jpg";
 import place4 from "@/assets/place-4.jpg";
 
 type Mood = "mystery" | "calm" | "adventure" | "history";
+type Category = "desert" | "sea" | "ruins" | "oasis";
 
 interface Place {
   id: number;
@@ -21,11 +22,19 @@ interface Place {
   locationEn: string;
   img: string;
   mood: Mood;
+  category: Category;
   duration: string;
   rating: number;
   reviewsCount: number;
   audio?: string;
 }
+
+const categoryLabel: Record<Category, { ar: string; en: string }> = {
+  desert: { ar: "صحراء", en: "Desert" },
+  sea: { ar: "بحر", en: "Sea" },
+  ruins: { ar: "آثار", en: "Ruins" },
+  oasis: { ar: "واحة", en: "Oasis" },
+};
 
 const moodConfig: Record<Mood, { ar: string; en: string; emoji: string; classes: string }> = {
   mystery: {
