@@ -49,12 +49,12 @@ const Navbar = () => {
             <Globe className="w-4 h-4" />
             {lang === "ar" ? "EN" : "عربي"}
           </button>
-          <a
-            href="#team"
+          <Link
+            to="/#team"
             className="hidden md:inline-flex items-center px-5 py-2 rounded-full border border-foreground/30 text-foreground text-sm hover:bg-foreground/10 transition-all duration-300"
           >
             {t("تواصل معنا", "Contact Us")}
-          </a>
+          </Link>
         </div>
       </div>
     </motion.nav>
