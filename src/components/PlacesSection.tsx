@@ -2,10 +2,16 @@ import { useLang } from "@/contexts/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo } from "react";
 import { Clock, Star, X, MapPin, Volume2, VolumeX, Sparkles } from "lucide-react";
-import place1 from "@/assets/place-1.jpg";
-import place2 from "@/assets/place-2.jpg";
-import place3 from "@/assets/place-3.jpg";
-import place4 from "@/assets/place-4.jpg";
+import imgWadiHitan from "@/assets/places/wadi-hitan.jpg";
+import imgLuxorTemple from "@/assets/places/luxor-temple.jpg";
+import imgAbuHaggag from "@/assets/places/abu-haggag.jpg";
+import imgHatshepsut from "@/assets/places/hatshepsut.jpg";
+import imgMummification from "@/assets/places/mummification.jpg";
+import imgMagicLake from "@/assets/places/magic-lake.jpg";
+import imgThreePools from "@/assets/places/three-pools.jpg";
+import imgWadiGenna from "@/assets/places/wadi-genna.jpg";
+import imgWishwash from "@/assets/places/wishwash.jpg";
+import imgKilani from "@/assets/places/kilani.jpg";
 
 type Mood = "mystery" | "calm" | "adventure" | "history";
 type Category = "desert" | "sea" | "ruins" | "oasis";
@@ -68,15 +74,15 @@ const places: Place[] = [
     id: 1,
     titleAr: "وادي الحيتان",
     titleEn: "Wadi Al-Hitan",
-    infoAr: "موقع تراث عالمي في الفيوم",
-    infoEn: "UNESCO World Heritage Site in Fayoum",
+    infoAr: "لما البحر يبقى صحرا — موقع تراث عالمي",
+    infoEn: "When the sea becomes desert — UNESCO site",
     storyAr:
-      "في قلب صحراء الفيوم، تنام حيتان عمرها 40 مليون سنة. وادي الحيتان شاهد على تحوّل الكوكب، حيث كانت البحار تغطي ما هو الآن رمال ذهبية. كل صخرة هنا تحكي فصلاً من تاريخ الأرض.",
+      "في قلب صحراء الفيوم، تنام حيتان عمرها 40 مليون سنة. اليونسكو اعترفت بيه سنة 2005 كأهم مكان في العالم لدراسة تطور الحيتان. متحف طبيعي مفتوح، الزمن هناك واقف.",
     storyEn:
-      "In the heart of Fayoum desert, whales 40 million years old rest silently. Wadi Al-Hitan is a witness to the planet's transformation, where seas once covered today's golden sands. Every rock here tells a chapter of Earth's history.",
+      "In the heart of Fayoum desert rest whales 40 million years old. UNESCO recognized it in 2005 as the world's most important site for studying whale evolution. An open-air natural museum where time stands still.",
     locationAr: "الفيوم، مصر",
     locationEn: "Fayoum, Egypt",
-    img: place1,
+    img: imgWadiHitan,
     mood: "mystery",
     category: "desert",
     duration: "3-4",
@@ -85,60 +91,174 @@ const places: Place[] = [
   },
   {
     id: 2,
-    titleAr: "واحة سيوة",
-    titleEn: "Siwa Oasis",
-    infoAr: "واحة أمازيغية في الصحراء الغربية",
-    infoEn: "Amazigh oasis in the Western Desert",
+    titleAr: "معبد الأقصر",
+    titleEn: "Luxor Temple",
+    infoAr: "حكاية عظمة مابتخلصش من 3 آلاف سنة",
+    infoEn: "A 3,000-year tale of greatness",
     storyAr:
-      "بين كثبان الصحراء الغربية، تختبئ سيوة بثقافتها الأمازيغية وعيونها الفوّارة وبحيراتها المالحة. هنا، الزمن يمشي ببطء، والنخيل يحرس أسرار معبد آمون.",
+      "بناه أمنحتب الثالث وكمّله رمسيس الثاني. مكان مقدس فيه قدس الأقداس مسموح بس للكهنة والفرعون. فضل صامد، وبقى فيه كنيسة رومانية وفوقها مسجد أبو الحجاج، طبقات تاريخ فوق بعض.",
     storyEn:
-      "Among the western desert dunes, Siwa hides with its Amazigh culture, bubbling springs, and salt lakes. Here, time walks slowly, and palm trees guard the secrets of the Temple of Amun.",
-    locationAr: "مطروح، مصر",
-    locationEn: "Matrouh, Egypt",
-    img: place2,
-    mood: "calm",
-    category: "oasis",
-    duration: "2-3 أيام",
-    rating: 4.7,
-    reviewsCount: 185,
+      "Built by Amenhotep III, completed by Ramses II. A sacred site whose Holy of Holies admitted only priests and pharaoh. Layers of history: Roman church then Abu Haggag Mosque on top.",
+    locationAr: "الأقصر، مصر",
+    locationEn: "Luxor, Egypt",
+    img: imgLuxorTemple,
+    mood: "history",
+    category: "ruins",
+    duration: "4-5",
+    rating: 4.9,
+    reviewsCount: 612,
   },
   {
     id: 3,
-    titleAr: "الصحراء البيضاء",
-    titleEn: "White Desert",
-    infoAr: "تشكيلات طبيعية فريدة من نوعها",
-    infoEn: "Unique natural rock formations",
+    titleAr: "مسجد أبو الحجاج",
+    titleEn: "Abu Haggag Mosque",
+    infoAr: "مسجد في قلب معبد — لما التاريخ يشتبك في بعضه",
+    infoEn: "A mosque inside a temple — history intertwined",
     storyAr:
-      "نحتت الرياح على مرّ آلاف السنين تماثيل من الطباشير الأبيض، فبدت الصحراء كأنها كوكب آخر. تحت ضوء القمر، تتوهج كقطع من الجليد وسط الرمال.",
+      "أرض مباركة من 3 آلاف سنة. الشيخ أبو الحجاج وصل في القرن الـ13، وبعد وفاته اتبنى المسجد فوق المعبد. عبادة مستمرة من غير انقطاع، ومئذنة وسط نقوش فرعونية.",
     storyEn:
-      "Winds carved white chalk sculptures over thousands of years, making the desert look like another planet. Under the moonlight, they glow like ice in the sand.",
-    locationAr: "الوادي الجديد، مصر",
-    locationEn: "New Valley, Egypt",
-    img: place3,
+      "Sacred ground for 3,000 years. Sheikh Abu Haggag arrived in the 13th century; after his death the mosque rose atop the temple. Uninterrupted worship — a minaret amid Pharaonic carvings.",
+    locationAr: "الأقصر، مصر",
+    locationEn: "Luxor, Egypt",
+    img: imgAbuHaggag,
+    mood: "history",
+    category: "ruins",
+    duration: "1-2",
+    rating: 4.7,
+    reviewsCount: 198,
+  },
+  {
+    id: 4,
+    titleAr: "معبد حتشبسوت",
+    titleEn: "Hatshepsut Temple",
+    infoAr: "حكاية العظمة والخلود على الضفة الغربية",
+    infoEn: "A tale of greatness on the West Bank",
+    storyAr:
+      "في حضن الجبل على الضفة الغربية للنيل، بناه المهندس سننموت لتخليد الملكة حتشبسوت. تصميم بثلاث مدرجات ضخمة، وبعثة تجارية لبلاد بونت سفنها محملة بالبخور والأخشاب النادرة.",
+    storyEn:
+      "Cradled in the cliffs of the West Bank, built by architect Senenmut to immortalize Queen Hatshepsut. A three-terrace masterpiece, with murals of the legendary expedition to the Land of Punt.",
+    locationAr: "الأقصر، مصر",
+    locationEn: "Luxor, Egypt",
+    img: imgHatshepsut,
+    mood: "history",
+    category: "ruins",
+    duration: "2-3",
+    rating: 4.9,
+    reviewsCount: 445,
+  },
+  {
+    id: 5,
+    titleAr: "متحف التحنيط",
+    titleEn: "Mummification Museum",
+    infoAr: "سر الخلود — رحلة عبور لعالم التاني",
+    infoEn: "The secret of immortality",
+    storyAr:
+      "التحنيط كان كوبري بيعدي عليه المصري القديم من الفناء لحد ما يوصل للخلود. أدوات سبقت عصرها، الأواني الكانوبية الأربعة، وموميا الكاهن ماسحرتي اللي عاش أكتر من 3 آلاف سنة ولسه ملامحه واضحة.",
+    storyEn:
+      "Mummification was a bridge ancient Egyptians crossed from death to eternity. Tools ahead of their time, the four canopic jars, and the mummy of priest Maaserty — 3,000 years old with features still clear.",
+    locationAr: "الأقصر، مصر",
+    locationEn: "Luxor, Egypt",
+    img: imgMummification,
+    mood: "mystery",
+    category: "ruins",
+    duration: "1-2",
+    rating: 4.6,
+    reviewsCount: 156,
+  },
+  {
+    id: 6,
+    titleAr: "البحيرة السحرية",
+    titleEn: "The Magic Lake",
+    infoAr: "جوهرة الصحراء في وادي الريان",
+    infoEn: "Desert jewel in Wadi El-Rayan",
+    storyAr:
+      "بحيرة مالحة هادئة محاطة برمال ذهبية. سُميت بالسحرية لتغير لون مياهها بشكل مستمر حسب زاوية الشمس — أزرق فاتح صباحاً، وذهبي وتركواز وقت الغروب. مياهها تنبثق من باطن الرمال في مشهد غامض.",
+    storyEn:
+      "A still salt lake circled by golden sands. Called 'magical' because its waters shift color with the sun — pale blue at dawn, gold and turquoise at sunset. Water springs mysteriously from beneath the dunes.",
+    locationAr: "الفيوم، مصر",
+    locationEn: "Fayoum, Egypt",
+    img: imgMagicLake,
+    mood: "calm",
+    category: "desert",
+    duration: "يوم كامل",
+    rating: 4.8,
+    reviewsCount: 287,
+  },
+  {
+    id: 7,
+    titleAr: "الثري بولز",
+    titleEn: "Three Pools",
+    infoAr: "بوابتك لعالم تاني تحت الميه في دهب",
+    infoEn: "Your gateway to another underwater world",
+    storyAr:
+      "تلات برك مية طبيعية وسط الشعاب المرجانية، بعيد عن دهب بنص ساعة. عمق مثالي للمبتدئين، والمية مش عميقة ولا مخيفة. هتشوف شعاب مرجانية حقيقية وأسماك ملونة من غير ما تغوص لمسافات بعيدة.",
+    storyEn:
+      "Three natural pools amid coral reefs, half an hour from Dahab. Perfect depth for beginners — gentle waters, real reefs and colorful fish without diving deep.",
+    locationAr: "دهب، جنوب سيناء",
+    locationEn: "Dahab, South Sinai",
+    img: imgThreePools,
+    mood: "adventure",
+    category: "sea",
+    duration: "نصف يوم",
+    rating: 4.9,
+    reviewsCount: 398,
+  },
+  {
+    id: 8,
+    titleAr: "وادي جني",
+    titleEn: "Wadi Genna",
+    infoAr: "حكاية جبل وهدوء في قلب دهب",
+    infoEn: "A mountain tale of stillness near Dahab",
+    storyAr:
+      "وادي جبلي طبيعي بكر، اتكوّن بين سلاسل جبال سيناء وصخوره منحوتة بفعل الرياح والزمن بألوان مختلفة. مكان مفيش فيه فنادق ولا دوشة، بس جبال وصمت يخليك تسمع صوت الطبيعة. جنة لمحبي المغامرة والهايكنج.",
+    storyEn:
+      "A pristine mountain valley between Sinai's ranges, its rocks carved by wind and time in shifting hues. No hotels, no noise — just mountains and silence. A paradise for adventurers and hikers.",
+    locationAr: "دهب، جنوب سيناء",
+    locationEn: "Dahab, South Sinai",
+    img: imgWadiGenna,
+    mood: "calm",
+    category: "desert",
+    duration: "يوم كامل",
+    rating: 4.8,
+    reviewsCount: 174,
+  },
+  {
+    id: 9,
+    titleAr: "وادي الوشواش",
+    titleEn: "Wadi Al-Wishwash",
+    infoAr: "سحر الوشوشة في جبال سيناء",
+    infoEn: "The whispering wadi in Sinai's mountains",
+    storyAr:
+      "اتسمى الوشواش نسبة لصوت الرياح وهي 'توشوش' بين ممراته الجبلية العالية. الأمطار والسيول شكلت مجاري مياه وأحواض طبيعية داخل صخوره. بحيرات عذبة بعمق 8 أمتار في قلب الصحراء — ملاذ حقيقي للمغامرين.",
+    storyEn:
+      "Named for the wind that 'whispers' through its high rock corridors. Rains carved natural pools inside the stone — freshwater lakes 8 meters deep in the heart of the desert.",
+    locationAr: "جنوب سيناء، مصر",
+    locationEn: "South Sinai, Egypt",
+    img: imgWishwash,
     mood: "adventure",
     category: "desert",
     duration: "يوم كامل",
     rating: 4.9,
-    reviewsCount: 312,
+    reviewsCount: 221,
   },
   {
-    id: 4,
-    titleAr: "دهب",
-    titleEn: "Dahab",
-    infoAr: "جوهرة البحر الأحمر",
-    infoEn: "Jewel of the Red Sea",
+    id: 10,
+    titleAr: "حي الكيلاني",
+    titleEn: "Al-Kilani Quarter",
+    infoAr: "حتة من أوروبا على أرض سيناء",
+    infoEn: "A piece of Europe on Sinai's shore",
     storyAr:
-      "حيث يلتقي الجبل بالبحر، تستلقي دهب بهدوئها البوهيمي. شعابها المرجانية تحكي للغواصين أسرار الأعماق، وشوارعها تنبض بإيقاع بدوي حر.",
+      "من أكتر من 150 سنة وصلت مراكب البحارة اليونانيين لساحل الطور وبنوا حي الكيلاني. بيوت من حجر المرجان، شبابيك وبلكونات بلمسة أوروبية، ومسجد وكنيسة جيران في سلام. زمن هادي وسط الجبال والبحر.",
     storyEn:
-      "Where the mountain meets the sea, Dahab lies with its bohemian calm. Its coral reefs tell divers the secrets of the deep, and its streets pulse with a free Bedouin rhythm.",
-    locationAr: "جنوب سيناء، مصر",
-    locationEn: "South Sinai, Egypt",
-    img: place4,
+      "150 years ago Greek sailors reached El-Tor's shore and built Al-Kilani. Coral-stone houses, European balconies, a mosque and church living side by side. A quiet age between mountains and sea.",
+    locationAr: "الطور، جنوب سيناء",
+    locationEn: "El-Tor, South Sinai",
+    img: imgKilani,
     mood: "calm",
     category: "sea",
-    duration: "2-4 أيام",
-    rating: 4.9,
-    reviewsCount: 520,
+    duration: "نصف يوم",
+    rating: 4.6,
+    reviewsCount: 92,
   },
 ];
 
