@@ -12,14 +12,63 @@ const HeroSection = () => {
     <section className="relative px-4 pt-4">
       {/* Rounded container with background image */}
       <div className="relative min-h-[95vh] rounded-3xl overflow-hidden">
-        {/* Background Image */}
-        <img
+        {/* Animated Background Image (Ken Burns effect) */}
+        <motion.img
           src={heroBg}
           alt="Egyptian landscape"
           className="absolute inset-0 w-full h-full object-cover"
           width={1920}
           height={1080}
+          initial={{ scale: 1.1, x: 0, y: 0 }}
+          animate={{
+            scale: [1.1, 1.25, 1.15, 1.1],
+            x: [0, -30, 20, 0],
+            y: [0, -15, 10, 0],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
+
+        {/* Heat haze shimmer */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none mix-blend-overlay"
+          style={{
+            background:
+              "radial-gradient(ellipse at 30% 70%, hsl(30 90% 67% / 0.25), transparent 60%), radial-gradient(ellipse at 70% 30%, hsl(200 80% 40% / 0.15), transparent 60%)",
+          }}
+          animate={{ opacity: [0.5, 0.9, 0.5] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Drifting sand particles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <motion.span
+              key={i}
+              className="absolute rounded-full bg-accent/40 blur-sm"
+              style={{
+                width: `${2 + (i % 4)}px`,
+                height: `${2 + (i % 4)}px`,
+                top: `${(i * 37) % 100}%`,
+                left: `-5%`,
+              }}
+              animate={{
+                x: ["0vw", "110vw"],
+                y: [0, (i % 2 === 0 ? -1 : 1) * 40],
+                opacity: [0, 0.8, 0],
+              }}
+              transition={{
+                duration: 12 + (i % 6),
+                repeat: Infinity,
+                delay: i * 0.7,
+                ease: "linear",
+              }}
+            />
+          ))}
+        </div>
 
         {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
