@@ -247,6 +247,36 @@ const places: Place[] = [
     duration: "يوم كامل",
     rating: 4.9,
     reviewsCount: 221,
+    highlights: [
+      {
+        emoji: "⛰️",
+        titleAr: "عبقرية الطبيعة في النحت",
+        titleEn: "Nature's genius of carving",
+        bodyAr: "شكّلت الأمطار والسيول عبر سنين طويلة مجاري مياه وأحواضاً طبيعية داخل صخور الوادي.",
+        bodyEn: "Over long years, rains and floods carved natural water channels and pools inside the wadi's rocks.",
+      },
+      {
+        emoji: "🏕️",
+        titleAr: "ملاذ حقيقي للمغامرين",
+        titleEn: "A true haven for adventurers",
+        bodyAr: "يمثل الوادي تجربة طبيعية واقعية بعيدة عن الأماكن المصطنعة لمن يبحثون عن الجمال الخام.",
+        bodyEn: "The wadi offers a raw, authentic nature experience far from artificial places — for those seeking untouched beauty.",
+      },
+      {
+        emoji: "💧",
+        titleAr: "بحيرات عذبة بعمق 8 أمتار",
+        titleEn: "Freshwater pools 8 meters deep",
+        bodyAr: "يضم الوادي عيون مياه صافية ونظيفة في قلب الصحراء.",
+        bodyEn: "The wadi holds clear, clean springs in the heart of the desert.",
+      },
+      {
+        emoji: "🌿",
+        titleAr: "أنت ضيف في رحاب الطبيعة",
+        titleEn: "You are a guest of nature",
+        bodyAr: "الحفاظ على نظافة المكان واحترام هدوئه يضمن استمرار حكايته للأجيال القادمة.",
+        bodyEn: "Keeping the place clean and respecting its silence ensures its story lives on for generations.",
+      },
+    ],
   },
   {
     id: 10,
