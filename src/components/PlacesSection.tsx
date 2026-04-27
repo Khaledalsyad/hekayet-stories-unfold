@@ -33,6 +33,13 @@ interface Place {
   rating: number;
   reviewsCount: number;
   audio?: string;
+  highlights?: {
+    titleAr: string;
+    titleEn: string;
+    bodyAr: string;
+    bodyEn: string;
+    emoji: string;
+  }[];
 }
 
 const categoryLabel: Record<Category, { ar: string; en: string }> = {
@@ -240,6 +247,36 @@ const places: Place[] = [
     duration: "يوم كامل",
     rating: 4.9,
     reviewsCount: 221,
+    highlights: [
+      {
+        emoji: "⛰️",
+        titleAr: "عبقرية الطبيعة في النحت",
+        titleEn: "Nature's genius of carving",
+        bodyAr: "شكّلت الأمطار والسيول عبر سنين طويلة مجاري مياه وأحواضاً طبيعية داخل صخور الوادي.",
+        bodyEn: "Over long years, rains and floods carved natural water channels and pools inside the wadi's rocks.",
+      },
+      {
+        emoji: "🏕️",
+        titleAr: "ملاذ حقيقي للمغامرين",
+        titleEn: "A true haven for adventurers",
+        bodyAr: "يمثل الوادي تجربة طبيعية واقعية بعيدة عن الأماكن المصطنعة لمن يبحثون عن الجمال الخام.",
+        bodyEn: "The wadi offers a raw, authentic nature experience far from artificial places — for those seeking untouched beauty.",
+      },
+      {
+        emoji: "💧",
+        titleAr: "بحيرات عذبة بعمق 8 أمتار",
+        titleEn: "Freshwater pools 8 meters deep",
+        bodyAr: "يضم الوادي عيون مياه صافية ونظيفة في قلب الصحراء.",
+        bodyEn: "The wadi holds clear, clean springs in the heart of the desert.",
+      },
+      {
+        emoji: "🌿",
+        titleAr: "أنت ضيف في رحاب الطبيعة",
+        titleEn: "You are a guest of nature",
+        bodyAr: "الحفاظ على نظافة المكان واحترام هدوئه يضمن استمرار حكايته للأجيال القادمة.",
+        bodyEn: "Keeping the place clean and respecting its silence ensures its story lives on for generations.",
+      },
+    ],
   },
   {
     id: 10,
@@ -559,6 +596,30 @@ const PlacesSection = () => {
                 <p className="text-foreground/80 font-cairo leading-relaxed mb-6">
                   {t(active.storyAr, active.storyEn)}
                 </p>
+
+                {active.highlights && active.highlights.length > 0 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                    {active.highlights.map((h, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: idx * 0.08 }}
+                        className="p-4 rounded-xl bg-muted/40 border border-border hover:border-accent/50 transition-colors"
+                      >
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-xl" aria-hidden>{h.emoji}</span>
+                          <h4 className="font-bold font-cairo text-sm text-foreground leading-tight">
+                            {t(h.titleAr, h.titleEn)}
+                          </h4>
+                        </div>
+                        <p className="text-xs text-muted-foreground font-cairo leading-relaxed">
+                          {t(h.bodyAr, h.bodyEn)}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
 
                 {/* Audio mock */}
                 <div className="mt-auto p-4 rounded-lg bg-muted/50 border border-border flex items-center gap-3">
