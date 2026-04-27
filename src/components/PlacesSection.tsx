@@ -33,6 +33,13 @@ interface Place {
   rating: number;
   reviewsCount: number;
   audio?: string;
+  highlights?: {
+    titleAr: string;
+    titleEn: string;
+    bodyAr: string;
+    bodyEn: string;
+    emoji: string;
+  }[];
 }
 
 const categoryLabel: Record<Category, { ar: string; en: string }> = {
