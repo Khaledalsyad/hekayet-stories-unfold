@@ -597,6 +597,30 @@ const PlacesSection = () => {
                   {t(active.storyAr, active.storyEn)}
                 </p>
 
+                {active.highlights && active.highlights.length > 0 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                    {active.highlights.map((h, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: idx * 0.08 }}
+                        className="p-4 rounded-xl bg-muted/40 border border-border hover:border-accent/50 transition-colors"
+                      >
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-xl" aria-hidden>{h.emoji}</span>
+                          <h4 className="font-bold font-cairo text-sm text-foreground leading-tight">
+                            {t(h.titleAr, h.titleEn)}
+                          </h4>
+                        </div>
+                        <p className="text-xs text-muted-foreground font-cairo leading-relaxed">
+                          {t(h.bodyAr, h.bodyEn)}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
+
                 {/* Audio mock */}
                 <div className="mt-auto p-4 rounded-lg bg-muted/50 border border-border flex items-center gap-3">
                   <button
