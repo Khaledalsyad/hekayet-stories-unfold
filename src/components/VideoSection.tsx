@@ -20,6 +20,7 @@ const videos = ([
     titleEn: "Old Greek Houses (Al-Kilani District)",
     descAr: "جولة في البيوت اليونانية القديمة بحي الكيلاني في مدينة الطور.",
     descEn: "A tour of the old Greek houses in Al-Kilani district, El-Tor city.",
+    fbUrl: "https://www.facebook.com/reel/2173670483450173",
   },
   {
     id: 2,
@@ -29,6 +30,7 @@ const videos = ([
     titleEn: "Hammam Musa",
     descAr: "حمام موسى التاريخي بمدينة الطور.",
     descEn: "The historic Hammam Musa in El-Tor city.",
+    fbUrl: "https://www.facebook.com/reel/2228951354600322",
   },
   {
     id: 3,
