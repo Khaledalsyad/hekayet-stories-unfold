@@ -186,10 +186,21 @@ const videos = [
     descAr: "مسجد الحسين بقلب القاهرة الفاطمية.",
     descEn: "Al-Hussein Mosque in the heart of Fatimid Cairo.",
   },
-].map((v, i) => ({
+] as Array<{
+  id: number;
+  region: string;
+  regionEn: string;
+  titleAr: string;
+  titleEn: string;
+  descAr: string;
+  descEn: string;
+  fbUrl?: string;
+}>).map((v, i) => ({
   ...v,
   thumb: pick(i),
-  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+  videoUrl: v.fbUrl
+    ? `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(v.fbUrl)}&show_text=false&autoplay=false`
+    : "https://www.youtube.com/embed/dQw4w9WgXcQ",
 }));
 
 const VideoSection = () => {
