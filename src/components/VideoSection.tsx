@@ -38,6 +38,7 @@ const videos = [
     titleEn: "Wadi Al-Wishwash",
     descAr: "رحلة إلى وادي الوشواش في نويبع.",
     descEn: "A journey to Wadi Al-Wishwash in Nuweiba.",
+    fbUrl: "https://www.facebook.com/reel/936618018735807",
   },
   {
     id: 4,
