@@ -20,6 +20,7 @@ const videos = ([
     titleEn: "Old Greek Houses (Al-Kilani District)",
     descAr: "جولة في البيوت اليونانية القديمة بحي الكيلاني في مدينة الطور.",
     descEn: "A tour of the old Greek houses in Al-Kilani district, El-Tor city.",
+    fbUrl: "https://www.facebook.com/reel/2173670483450173",
   },
   {
     id: 2,
@@ -29,6 +30,7 @@ const videos = ([
     titleEn: "Hammam Musa",
     descAr: "حمام موسى التاريخي بمدينة الطور.",
     descEn: "The historic Hammam Musa in El-Tor city.",
+    fbUrl: "https://www.facebook.com/reel/2228951354600322",
   },
   {
     id: 3,
@@ -48,6 +50,7 @@ const videos = ([
     titleEn: "Three Pools Reserve",
     descAr: "محمية الثري بولز الساحرة في دهب.",
     descEn: "The enchanting Three Pools reserve in Dahab.",
+    fbUrl: "https://www.facebook.com/reel/1224080019469117",
   },
   {
     id: 5,
@@ -57,6 +60,7 @@ const videos = ([
     titleEn: "Wadi Gnai",
     descAr: "جمال وادي چني في دهب.",
     descEn: "The beauty of Wadi Gnai in Dahab.",
+    fbUrl: "https://www.facebook.com/reel/1655919219076447",
   },
   {
     id: 6,
@@ -66,6 +70,7 @@ const videos = ([
     titleEn: "Saladin Citadel",
     descAr: "قلعة صلاح الدين الأيوبي في طابا.",
     descEn: "Saladin Citadel in Taba.",
+    fbUrl: "https://www.facebook.com/reel/1872336376787059",
   },
   {
     id: 7,
@@ -103,6 +108,7 @@ const videos = ([
     titleEn: "Wadi Al-Hitan",
     descAr: "في قلب الصحراء حيث كانت الحيتان تسبح منذ ملايين السنين.",
     descEn: "In the heart of the desert where whales swam millions of years ago.",
+    fbUrl: "https://www.facebook.com/reel/1501155804781824",
   },
   {
     id: 11,
@@ -112,6 +118,48 @@ const videos = ([
     titleEn: "The Magic Lake",
     descAr: "البحيرة السحرية بألوانها المتغيرة في الفيوم.",
     descEn: "The Magic Lake with its changing colors in Fayoum.",
+    fbUrl: "https://www.facebook.com/reel/1226540316312330",
+  },
+  // الأقصر
+  {
+    id: 20,
+    region: "الأقصر",
+    regionEn: "Luxor",
+    titleAr: "معبد الأقصر",
+    titleEn: "Luxor Temple",
+    descAr: "معبد الأقصر العريق على ضفاف النيل.",
+    descEn: "The ancient Luxor Temple on the banks of the Nile.",
+    fbUrl: "https://www.facebook.com/reel/1466742028268904",
+  },
+  {
+    id: 21,
+    region: "الأقصر",
+    regionEn: "Luxor",
+    titleAr: "معبد حتشبسوت",
+    titleEn: "Hatshepsut Temple",
+    descAr: "معبد الملكة حتشبسوت في الدير البحري.",
+    descEn: "Queen Hatshepsut's temple at Deir el-Bahari.",
+    fbUrl: "https://www.facebook.com/reel/2200034264162286",
+  },
+  {
+    id: 22,
+    region: "الأقصر",
+    regionEn: "Luxor",
+    titleAr: "مسجد أبو الحجاج",
+    titleEn: "Abu Al-Haggag Mosque",
+    descAr: "مسجد أبو الحجاج الأقصري داخل معبد الأقصر.",
+    descEn: "Abu Al-Haggag Mosque inside Luxor Temple.",
+    fbUrl: "https://www.facebook.com/reel/974682125015256",
+  },
+  {
+    id: 23,
+    region: "الأقصر",
+    regionEn: "Luxor",
+    titleAr: "متحف التحنيط",
+    titleEn: "Mummification Museum",
+    descAr: "متحف التحنيط بالأقصر وأسرار الفراعنة.",
+    descEn: "The Mummification Museum in Luxor and the secrets of the Pharaohs.",
+    fbUrl: "https://www.facebook.com/reel/986541337278800",
   },
   // القاهرة
   {
