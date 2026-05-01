@@ -50,6 +50,7 @@ const videos = ([
     titleEn: "Three Pools Reserve",
     descAr: "محمية الثري بولز الساحرة في دهب.",
     descEn: "The enchanting Three Pools reserve in Dahab.",
+    fbUrl: "https://www.facebook.com/reel/1224080019469117",
   },
   {
     id: 5,
@@ -59,6 +60,7 @@ const videos = ([
     titleEn: "Wadi Gnai",
     descAr: "جمال وادي چني في دهب.",
     descEn: "The beauty of Wadi Gnai in Dahab.",
+    fbUrl: "https://www.facebook.com/reel/1655919219076447",
   },
   {
     id: 6,
@@ -68,6 +70,7 @@ const videos = ([
     titleEn: "Saladin Citadel",
     descAr: "قلعة صلاح الدين الأيوبي في طابا.",
     descEn: "Saladin Citadel in Taba.",
+    fbUrl: "https://www.facebook.com/reel/1872336376787059",
   },
   {
     id: 7,
