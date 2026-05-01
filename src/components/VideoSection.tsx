@@ -10,7 +10,7 @@ import place4 from "@/assets/place-4.jpg";
 const thumbs = [place1, place2, place3, place4];
 const pick = (i: number) => thumbs[i % thumbs.length];
 
-const videos = [
+const videos = ([
   // جنوب سيناء
   {
     id: 1,
