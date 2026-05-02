@@ -2,6 +2,7 @@ import { useLang } from "@/contexts/LanguageContext";
 import { Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import logo from "@/assets/logo.jpg";
 
 const Navbar = () => {
   const { lang, toggleLang, t } = useLang();
@@ -16,9 +17,11 @@ const Navbar = () => {
       <div className="flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center">
-            <span className="text-accent font-bold text-sm">حم</span>
-          </div>
+          <img
+            src={logo}
+            alt={t("حكاية مكان", "Hekayet Makan")}
+            className="w-10 h-10 rounded-lg object-contain bg-background"
+          />
           <span className="text-foreground text-lg font-bold font-cairo">
             {t("حكاية مكان", "Hekayet Makan")}
           </span>
