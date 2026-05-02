@@ -25,7 +25,7 @@ const Navbar = () => {
         </div>
 
         {/* Center Nav Links */}
-        <div className="hidden md:flex items-center gap-8 text-sm text-foreground/70">
+        <div className="hidden sm:flex items-center gap-4 lg:gap-8 text-xs lg:text-sm text-foreground/70">
           <Link to="/#videos" className="hover:text-foreground transition-colors duration-300">
             {t("الحلقات", "Episodes")}
           </Link>
