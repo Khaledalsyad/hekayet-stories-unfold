@@ -2,6 +2,7 @@ import { useLang } from "@/contexts/LanguageContext";
 import { Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import logo from "@/assets/logo.jpg";
 
 const Navbar = () => {
   const { lang, toggleLang, t } = useLang();
