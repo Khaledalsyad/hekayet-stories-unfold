@@ -271,7 +271,7 @@ const ImpactSection = () => {
             whileHover={{ y: -8 }}
             animate={{ y: [0, -6, 0] }}
             transition={{ y: { duration: 5, repeat: Infinity, ease: "easeInOut" } }}
-            className={`${glass} md:col-span-2 p-6 group hover:border-accent/40 transition-all duration-500 md:-rotate-[1deg]`}
+            className={`${glass} col-span-2 md:col-span-2 p-4 md:p-6 group hover:border-accent/40 transition-all duration-500 md:-rotate-[1deg]`}
           >
             <div className="flex items-center justify-between mb-3">
               <Users className="w-5 h-5 text-accent" />
