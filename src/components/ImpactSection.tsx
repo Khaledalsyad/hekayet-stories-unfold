@@ -168,12 +168,12 @@ const ImpactSection = () => {
         </motion.div>
 
         {/* Dashboard Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-6 auto-rows-auto gap-5 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-6 auto-rows-auto gap-3 md:gap-6">
           {/* Card 1 - Big Number: Places */}
           <motion.div
             {...cardEnter(0)}
             whileHover={{ y: -8, scale: 1.02 }}
-            className={`${glass} md:col-span-2 md:row-span-2 p-7 group hover:border-accent/40 transition-all duration-500 hover:shadow-[0_0_40px_hsl(30_90%_67%/0.25)] md:rotate-[-1deg]`}
+            className={`${glass} col-span-2 md:col-span-2 md:row-span-2 p-4 md:p-7 group hover:border-accent/40 transition-all duration-500 hover:shadow-[0_0_40px_hsl(30_90%_67%/0.25)] md:rotate-[-1deg]`}
           >
             <div className="flex items-start justify-between mb-6">
               <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center border border-accent/20">
@@ -200,7 +200,7 @@ const ImpactSection = () => {
           <motion.div
             {...cardEnter(0.1)}
             whileHover={{ y: -8 }}
-            className={`${glass} md:col-span-4 p-7 group hover:border-accent/40 transition-all duration-500`}
+            className={`${glass} col-span-2 md:col-span-4 p-4 md:p-7 group hover:border-accent/40 transition-all duration-500`}
           >
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
@@ -228,7 +228,7 @@ const ImpactSection = () => {
           <motion.div
             {...cardEnter(0.2)}
             whileHover={{ y: -8 }}
-            className={`${glass} md:col-span-2 p-6 group hover:border-accent/40 transition-all duration-500 md:rotate-[1deg]`}
+            className={`${glass} col-span-1 md:col-span-2 p-4 md:p-6 group hover:border-accent/40 transition-all duration-500 md:rotate-[1deg]`}
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center border border-accent/20">
@@ -260,7 +260,7 @@ const ImpactSection = () => {
           <motion.div
             {...cardEnter(0.3)}
             whileHover={{ y: -8 }}
-            className={`${glass} md:col-span-2 p-6 group hover:border-accent/40 transition-all duration-500 flex items-center justify-center`}
+            className={`${glass} col-span-1 md:col-span-2 p-3 md:p-6 group hover:border-accent/40 transition-all duration-500 flex items-center justify-center`}
           >
             <RadialCard value={10} max={10} label={t("أعضاء الفريق", "Team Members")} />
           </motion.div>
@@ -271,7 +271,7 @@ const ImpactSection = () => {
             whileHover={{ y: -8 }}
             animate={{ y: [0, -6, 0] }}
             transition={{ y: { duration: 5, repeat: Infinity, ease: "easeInOut" } }}
-            className={`${glass} md:col-span-2 p-6 group hover:border-accent/40 transition-all duration-500 md:-rotate-[1deg]`}
+            className={`${glass} col-span-2 md:col-span-2 p-4 md:p-6 group hover:border-accent/40 transition-all duration-500 md:-rotate-[1deg]`}
           >
             <div className="flex items-center justify-between mb-3">
               <Users className="w-5 h-5 text-accent" />
