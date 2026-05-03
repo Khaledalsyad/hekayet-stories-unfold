@@ -260,7 +260,7 @@ const ImpactSection = () => {
           <motion.div
             {...cardEnter(0.3)}
             whileHover={{ y: -8 }}
-            className={`${glass} md:col-span-2 p-6 group hover:border-accent/40 transition-all duration-500 flex items-center justify-center`}
+            className={`${glass} col-span-1 md:col-span-2 p-3 md:p-6 group hover:border-accent/40 transition-all duration-500 flex items-center justify-center`}
           >
             <RadialCard value={10} max={10} label={t("أعضاء الفريق", "Team Members")} />
           </motion.div>
