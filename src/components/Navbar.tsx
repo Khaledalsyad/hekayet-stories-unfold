@@ -2,7 +2,7 @@ import { useLang } from "@/contexts/LanguageContext";
 import { Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo.png";
 
 const Navbar = () => {
   const { lang, toggleLang, t } = useLang();
@@ -20,7 +20,7 @@ const Navbar = () => {
           <img
             src={logo}
             alt={t("حكاية مكان", "Hekayet Makan")}
-            className="w-10 h-10 rounded-lg object-contain bg-background"
+            className="w-10 h-10 object-contain"
           />
           <span className="text-foreground text-lg font-bold font-cairo">
             {t("حكاية مكان", "Hekayet Makan")}
