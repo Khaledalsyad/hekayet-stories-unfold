@@ -173,7 +173,7 @@ const ImpactSection = () => {
           <motion.div
             {...cardEnter(0)}
             whileHover={{ y: -8, scale: 1.02 }}
-            className={`${glass} md:col-span-2 md:row-span-2 p-7 group hover:border-accent/40 transition-all duration-500 hover:shadow-[0_0_40px_hsl(30_90%_67%/0.25)] md:rotate-[-1deg]`}
+            className={`${glass} col-span-2 md:col-span-2 md:row-span-2 p-4 md:p-7 group hover:border-accent/40 transition-all duration-500 hover:shadow-[0_0_40px_hsl(30_90%_67%/0.25)] md:rotate-[-1deg]`}
           >
             <div className="flex items-start justify-between mb-6">
               <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center border border-accent/20">
