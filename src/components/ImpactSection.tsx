@@ -168,7 +168,7 @@ const ImpactSection = () => {
         </motion.div>
 
         {/* Dashboard Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-6 auto-rows-auto gap-5 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-6 auto-rows-auto gap-3 md:gap-6">
           {/* Card 1 - Big Number: Places */}
           <motion.div
             {...cardEnter(0)}
