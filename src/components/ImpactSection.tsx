@@ -200,7 +200,7 @@ const ImpactSection = () => {
           <motion.div
             {...cardEnter(0.1)}
             whileHover={{ y: -8 }}
-            className={`${glass} md:col-span-4 p-7 group hover:border-accent/40 transition-all duration-500`}
+            className={`${glass} col-span-2 md:col-span-4 p-4 md:p-7 group hover:border-accent/40 transition-all duration-500`}
           >
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
