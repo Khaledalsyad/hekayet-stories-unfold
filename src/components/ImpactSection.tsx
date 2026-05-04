@@ -200,24 +200,24 @@ const ImpactSection = () => {
           <motion.div
             {...cardEnter(0.1)}
             whileHover={{ y: -8 }}
-            className={`${glass} col-span-2 md:col-span-4 p-4 md:p-7 group hover:border-accent/40 transition-all duration-500`}
+            className={`${glass} col-span-2 md:col-span-4 p-3 md:p-7 group hover:border-accent/40 transition-all duration-500`}
           >
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center border border-accent/20">
-                  <Film className="w-5 h-5 text-accent" />
+            <div className="flex items-center justify-between mb-3 md:mb-4">
+              <div className="flex items-center gap-2 md:gap-3">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-accent/10 flex items-center justify-center border border-accent/20">
+                  <Film className="w-4 h-4 md:w-5 md:h-5 text-accent" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground font-cairo tracking-wider uppercase">
+                  <p className="text-[10px] md:text-xs text-muted-foreground font-cairo tracking-wider uppercase">
                     {t("الفيديوهات المنتجة", "Videos Produced")}
                   </p>
-                  <p className="text-3xl md:text-4xl font-bold text-foreground font-cairo">
+                  <p className="text-2xl md:text-4xl font-bold text-foreground font-cairo">
                     <Counter to={19} />
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-1.5 text-accent text-sm font-cairo">
-                <TrendingUp className="w-4 h-4" />
+              <div className="flex items-center gap-1 text-accent text-xs md:text-sm font-cairo">
+                <TrendingUp className="w-3.5 h-3.5 md:w-4 md:h-4" />
                 <span>+24%</span>
               </div>
             </div>
