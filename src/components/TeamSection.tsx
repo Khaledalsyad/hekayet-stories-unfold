@@ -280,18 +280,18 @@ const TeamSection = () => {
                 whileHover={{ y: -8, scale: 1.02 }}
                 onHoverStart={() => setActiveId(i)}
                 onHoverEnd={() => setActiveId(null)}
-                className="group relative rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6 shadow-[0_8px_32px_rgba(0,0,0,0.4)] overflow-hidden transition-all duration-500 hover:border-accent/40 hover:shadow-[0_0_50px_hsl(30_90%_67%/0.25)]"
+                className="group relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-3 md:p-4 shadow-[0_8px_32px_rgba(0,0,0,0.4)] overflow-hidden transition-all duration-500 hover:border-accent/40 hover:shadow-[0_0_50px_hsl(30_90%_67%/0.25)]"
               >
                 {/* Soft light reflection */}
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-                <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-accent/10 blur-3xl group-hover:bg-accent/25 transition-all duration-500" />
+                <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-accent/10 blur-3xl group-hover:bg-accent/25 transition-all duration-500" />
 
                 {/* Top: avatar + name */}
-                <div className="relative flex flex-col items-center text-center mb-5">
+                <div className="relative flex flex-col items-center text-center mb-2.5">
                   <motion.div
-                    animate={{ y: [0, -4, 0] }}
+                    animate={{ y: [0, -3, 0] }}
                     transition={{ duration: 4 + (i % 3), repeat: Infinity, ease: "easeInOut" }}
-                    className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-accent/50 shadow-[0_0_25px_hsl(var(--accent)/0.4)] mb-4"
+                    className="relative w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-accent/50 shadow-[0_0_20px_hsl(var(--accent)/0.4)] mb-2"
                   >
                     <img
                       src={member.img}
@@ -299,47 +299,39 @@ const TeamSection = () => {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       loading="lazy"
                     />
-                    <div className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-background border border-accent/50 flex items-center justify-center">
-                      <Icon className="w-4 h-4 text-accent" />
+                    <div className="absolute -bottom-0.5 -right-0.5 w-5 h-5 rounded-full bg-background border border-accent/50 flex items-center justify-center">
+                      <Icon className="w-2.5 h-2.5 text-accent" />
                     </div>
                   </motion.div>
-                  <h3 className="text-base font-bold font-cairo text-foreground">
+                  <h3 className="text-xs md:text-sm font-bold font-cairo text-foreground line-clamp-1">
                     {t(member.nameAr, member.nameEn)}
                   </h3>
-                  <p className="text-xs text-accent font-cairo mt-1 tracking-wider">
+                  <p className="text-[10px] text-accent font-cairo mt-0.5 tracking-wider line-clamp-1">
                     {t(member.roleAr, member.roleEn)}
                   </p>
                 </div>
 
                 {/* Contribution */}
-                <div className="relative rounded-2xl border border-white/5 bg-black/30 p-3 mb-4">
-                  <p className="text-[11px] text-muted-foreground font-cairo uppercase tracking-wider mb-1">
-                    {t("المساهمة", "Contribution")}
-                  </p>
-                  <p className="text-sm text-foreground/90 font-cairo leading-relaxed">
+                <div className="relative rounded-lg border border-white/5 bg-black/30 p-2 mb-2">
+                  <p className="text-[10px] text-foreground/85 font-cairo leading-snug line-clamp-2">
                     {t(member.contribAr, member.contribEn)}
                   </p>
                 </div>
 
                 {/* Stats */}
-                <div className="relative grid grid-cols-2 gap-2 mb-5">
+                <div className="relative grid grid-cols-2 gap-1.5">
                   {member.stats.map((s, k) => (
                     <div
                       key={k}
-                      className="rounded-xl border border-white/5 bg-white/[0.02] py-2 px-3 text-center"
+                      className="rounded-lg border border-white/5 bg-white/[0.02] py-1.5 px-1 text-center"
                     >
-                      <p className="text-lg font-bold text-gradient-accent font-cairo">{s.value}</p>
-                      <p className="text-[10px] text-muted-foreground font-cairo tracking-wider uppercase">
+                      <p className="text-sm font-bold text-gradient-accent font-cairo">{s.value}</p>
+                      <p className="text-[9px] text-muted-foreground font-cairo tracking-wider uppercase line-clamp-1">
                         {t(s.label[0], s.label[1])}
                       </p>
                     </div>
                   ))}
                 </div>
-
-                {/* Button */}
-                <button className="relative w-full rounded-xl border border-accent/30 bg-accent/10 hover:bg-accent/20 text-accent text-sm font-cairo py-2.5 transition-all duration-300 hover:border-accent/60">
-                  {t("عرض التفاصيل", "View Contribution")}
-                </button>
 
                 {/* Extended overlay on hover */}
                 <motion.div
