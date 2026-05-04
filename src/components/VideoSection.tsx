@@ -116,16 +116,6 @@ const videos = ([
   },
   // الفيوم
   {
-    id: 9,
-    region: "الفيوم",
-    regionEn: "Fayoum",
-    titleAr: "جبل المدورة",
-    titleEn: "Al-Modawara Mountain",
-    descAr: "جبل المدورة في الفيوم.",
-    descEn: "Al-Modawara Mountain in Fayoum.",
-    thumb: vModawara,
-  },
-  {
     id: 10,
     region: "الفيوم",
     regionEn: "Fayoum",
