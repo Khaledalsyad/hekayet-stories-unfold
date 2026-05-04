@@ -266,7 +266,7 @@ const TeamSection = () => {
         </motion.div>
 
         {/* Team grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
           {team.map((member, i) => {
             const Icon = member.icon;
             const isActive = activeId === i;
