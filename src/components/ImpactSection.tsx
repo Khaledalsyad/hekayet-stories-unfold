@@ -35,8 +35,8 @@ const RadialCard = ({ value, label, max = 100 }: { value: number; label: string;
   const pct = Math.min(value / max, 1);
 
   return (
-    <div ref={ref} className="flex flex-col items-center justify-center gap-3">
-      <div className="relative w-32 h-32">
+    <div ref={ref} className="flex flex-col items-center justify-center gap-2">
+      <div className="relative w-20 h-20 md:w-32 md:h-32">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
           <circle cx="60" cy="60" r={radius} stroke="hsl(var(--muted))" strokeWidth="8" fill="none" opacity="0.3" />
           <motion.circle
@@ -60,12 +60,12 @@ const RadialCard = ({ value, label, max = 100 }: { value: number; label: string;
           </defs>
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-3xl font-bold text-foreground font-cairo">
+          <span className="text-xl md:text-3xl font-bold text-foreground font-cairo">
             <Counter to={value} />
           </span>
         </div>
       </div>
-      <p className="text-sm text-muted-foreground font-cairo">{label}</p>
+      <p className="text-[11px] md:text-sm text-muted-foreground font-cairo text-center line-clamp-1">{label}</p>
     </div>
   );
 };
