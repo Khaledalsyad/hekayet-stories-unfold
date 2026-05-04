@@ -228,20 +228,20 @@ const ImpactSection = () => {
           <motion.div
             {...cardEnter(0.2)}
             whileHover={{ y: -8 }}
-            className={`${glass} col-span-1 md:col-span-2 p-4 md:p-6 group hover:border-accent/40 transition-all duration-500 md:rotate-[1deg]`}
+            className={`${glass} col-span-1 md:col-span-2 p-3 md:p-6 group hover:border-accent/40 transition-all duration-500 md:rotate-[1deg]`}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center border border-accent/20">
-                <Clock className="w-5 h-5 text-accent" />
+            <div className="flex items-center gap-2 mb-2 md:mb-4">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-accent/10 flex items-center justify-center border border-accent/20">
+                <Clock className="w-4 h-4 md:w-5 md:h-5 text-accent" />
               </div>
-              <p className="text-xs text-muted-foreground font-cairo tracking-wider uppercase">
+              <p className="text-[10px] md:text-xs text-muted-foreground font-cairo tracking-wider uppercase line-clamp-1">
                 {t("ساعات تصوير", "Filming Hours")}
               </p>
             </div>
-            <div className="text-4xl font-bold text-foreground font-cairo mb-3">
+            <div className="text-2xl md:text-4xl font-bold text-foreground font-cairo mb-2 md:mb-3">
               <Counter to={120} suffix="+" />
             </div>
-            <div className="w-full h-2 rounded-full bg-muted/50 overflow-hidden">
+            <div className="w-full h-1.5 md:h-2 rounded-full bg-muted/50 overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 whileInView={{ width: "85%" }}
@@ -251,7 +251,7 @@ const ImpactSection = () => {
                 style={{ background: "linear-gradient(90deg, hsl(30 90% 67%), hsl(35 80% 45%))" }}
               />
             </div>
-            <p className="text-xs text-muted-foreground font-cairo mt-2">
+            <p className="text-[10px] md:text-xs text-muted-foreground font-cairo mt-2 line-clamp-1">
               {t("من الإنتاج الميداني", "of field production")}
             </p>
           </motion.div>
@@ -271,21 +271,21 @@ const ImpactSection = () => {
             whileHover={{ y: -8 }}
             animate={{ y: [0, -6, 0] }}
             transition={{ y: { duration: 5, repeat: Infinity, ease: "easeInOut" } }}
-            className={`${glass} col-span-2 md:col-span-2 p-4 md:p-6 group hover:border-accent/40 transition-all duration-500 md:-rotate-[1deg]`}
+            className={`${glass} col-span-2 md:col-span-2 p-3 md:p-6 group hover:border-accent/40 transition-all duration-500 md:-rotate-[1deg]`}
           >
-            <div className="flex items-center justify-between mb-3">
-              <Users className="w-5 h-5 text-accent" />
+            <div className="flex items-center justify-between mb-2 md:mb-3">
+              <Users className="w-4 h-4 md:w-5 md:h-5 text-accent" />
               <span className="text-[10px] text-accent/70 font-cairo tracking-wider">
                 {t("مباشر", "LIVE")}
               </span>
             </div>
-            <p className="text-xs text-muted-foreground font-cairo uppercase tracking-wider mb-2">
+            <p className="text-[10px] md:text-xs text-muted-foreground font-cairo uppercase tracking-wider mb-1 md:mb-2 line-clamp-1">
               {t("تفاعل المشاهدين", "Viewer Engagement")}
             </p>
-            <p className="text-3xl font-bold text-foreground font-cairo">
+            <p className="text-2xl md:text-3xl font-bold text-foreground font-cairo">
               <Counter to={94} suffix="%" />
             </p>
-            <div className="flex items-center gap-1 mt-2 text-xs text-accent font-cairo">
+            <div className="flex items-center gap-1 mt-2 text-[10px] md:text-xs text-accent font-cairo">
               <Activity className="w-3 h-3" />
               <span>{t("معدل ممتاز", "Excellent rate")}</span>
             </div>
