@@ -35,8 +35,8 @@ const RadialCard = ({ value, label, max = 100 }: { value: number; label: string;
   const pct = Math.min(value / max, 1);
 
   return (
-    <div ref={ref} className="flex flex-col items-center justify-center gap-3">
-      <div className="relative w-32 h-32">
+    <div ref={ref} className="flex flex-col items-center justify-center gap-2">
+      <div className="relative w-20 h-20 md:w-32 md:h-32">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
           <circle cx="60" cy="60" r={radius} stroke="hsl(var(--muted))" strokeWidth="8" fill="none" opacity="0.3" />
           <motion.circle
@@ -60,12 +60,12 @@ const RadialCard = ({ value, label, max = 100 }: { value: number; label: string;
           </defs>
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-3xl font-bold text-foreground font-cairo">
+          <span className="text-xl md:text-3xl font-bold text-foreground font-cairo">
             <Counter to={value} />
           </span>
         </div>
       </div>
-      <p className="text-sm text-muted-foreground font-cairo">{label}</p>
+      <p className="text-[11px] md:text-sm text-muted-foreground font-cairo text-center line-clamp-1">{label}</p>
     </div>
   );
 };
@@ -175,21 +175,21 @@ const ImpactSection = () => {
             whileHover={{ y: -8, scale: 1.02 }}
             className={`${glass} col-span-2 md:col-span-2 md:row-span-2 p-4 md:p-7 group hover:border-accent/40 transition-all duration-500 hover:shadow-[0_0_40px_hsl(30_90%_67%/0.25)] md:rotate-[-1deg]`}
           >
-            <div className="flex items-start justify-between mb-6">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center border border-accent/20">
-                <MapPin className="w-6 h-6 text-accent" />
+            <div className="flex items-start justify-between mb-3 md:mb-6">
+              <div className="w-9 h-9 md:w-12 md:h-12 rounded-xl bg-accent/10 flex items-center justify-center border border-accent/20">
+                <MapPin className="w-4 h-4 md:w-6 md:h-6 text-accent" />
               </div>
-              <span className="text-xs text-accent/70 font-cairo tracking-wider">
+              <span className="text-[10px] md:text-xs text-accent/70 font-cairo tracking-wider">
                 {t("أماكن", "PLACES")}
               </span>
             </div>
-            <div className="text-7xl md:text-8xl font-black text-gradient-accent font-cairo leading-none mb-3">
+            <div className="text-5xl md:text-8xl font-black text-gradient-accent font-cairo leading-none mb-2 md:mb-3">
               <Counter to={4} />
             </div>
-            <p className="text-foreground/80 font-cairo text-lg mb-2">
+            <p className="text-foreground/80 font-cairo text-sm md:text-lg mb-1 md:mb-2 line-clamp-1">
               {t("أماكن تم استكشافها", "Places Explored")}
             </p>
-            <p className="text-sm text-muted-foreground font-cairo">
+            <p className="text-[11px] md:text-sm text-muted-foreground font-cairo line-clamp-2">
               {t("سيوة، الفيوم، دهب، وادي الحيتان", "Siwa, Fayoum, Dahab, Wadi Al-Hitan")}
             </p>
             {/* corner glow */}
@@ -200,24 +200,24 @@ const ImpactSection = () => {
           <motion.div
             {...cardEnter(0.1)}
             whileHover={{ y: -8 }}
-            className={`${glass} col-span-2 md:col-span-4 p-4 md:p-7 group hover:border-accent/40 transition-all duration-500`}
+            className={`${glass} col-span-2 md:col-span-4 p-3 md:p-7 group hover:border-accent/40 transition-all duration-500`}
           >
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center border border-accent/20">
-                  <Film className="w-5 h-5 text-accent" />
+            <div className="flex items-center justify-between mb-3 md:mb-4">
+              <div className="flex items-center gap-2 md:gap-3">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-accent/10 flex items-center justify-center border border-accent/20">
+                  <Film className="w-4 h-4 md:w-5 md:h-5 text-accent" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground font-cairo tracking-wider uppercase">
+                  <p className="text-[10px] md:text-xs text-muted-foreground font-cairo tracking-wider uppercase">
                     {t("الفيديوهات المنتجة", "Videos Produced")}
                   </p>
-                  <p className="text-3xl md:text-4xl font-bold text-foreground font-cairo">
+                  <p className="text-2xl md:text-4xl font-bold text-foreground font-cairo">
                     <Counter to={19} />
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-1.5 text-accent text-sm font-cairo">
-                <TrendingUp className="w-4 h-4" />
+              <div className="flex items-center gap-1 text-accent text-xs md:text-sm font-cairo">
+                <TrendingUp className="w-3.5 h-3.5 md:w-4 md:h-4" />
                 <span>+24%</span>
               </div>
             </div>
@@ -228,20 +228,20 @@ const ImpactSection = () => {
           <motion.div
             {...cardEnter(0.2)}
             whileHover={{ y: -8 }}
-            className={`${glass} col-span-1 md:col-span-2 p-4 md:p-6 group hover:border-accent/40 transition-all duration-500 md:rotate-[1deg]`}
+            className={`${glass} col-span-1 md:col-span-2 p-3 md:p-6 group hover:border-accent/40 transition-all duration-500 md:rotate-[1deg]`}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center border border-accent/20">
-                <Clock className="w-5 h-5 text-accent" />
+            <div className="flex items-center gap-2 mb-2 md:mb-4">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-accent/10 flex items-center justify-center border border-accent/20">
+                <Clock className="w-4 h-4 md:w-5 md:h-5 text-accent" />
               </div>
-              <p className="text-xs text-muted-foreground font-cairo tracking-wider uppercase">
+              <p className="text-[10px] md:text-xs text-muted-foreground font-cairo tracking-wider uppercase line-clamp-1">
                 {t("ساعات تصوير", "Filming Hours")}
               </p>
             </div>
-            <div className="text-4xl font-bold text-foreground font-cairo mb-3">
+            <div className="text-2xl md:text-4xl font-bold text-foreground font-cairo mb-2 md:mb-3">
               <Counter to={120} suffix="+" />
             </div>
-            <div className="w-full h-2 rounded-full bg-muted/50 overflow-hidden">
+            <div className="w-full h-1.5 md:h-2 rounded-full bg-muted/50 overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 whileInView={{ width: "85%" }}
@@ -251,7 +251,7 @@ const ImpactSection = () => {
                 style={{ background: "linear-gradient(90deg, hsl(30 90% 67%), hsl(35 80% 45%))" }}
               />
             </div>
-            <p className="text-xs text-muted-foreground font-cairo mt-2">
+            <p className="text-[10px] md:text-xs text-muted-foreground font-cairo mt-2 line-clamp-1">
               {t("من الإنتاج الميداني", "of field production")}
             </p>
           </motion.div>
@@ -271,21 +271,21 @@ const ImpactSection = () => {
             whileHover={{ y: -8 }}
             animate={{ y: [0, -6, 0] }}
             transition={{ y: { duration: 5, repeat: Infinity, ease: "easeInOut" } }}
-            className={`${glass} col-span-2 md:col-span-2 p-4 md:p-6 group hover:border-accent/40 transition-all duration-500 md:-rotate-[1deg]`}
+            className={`${glass} col-span-2 md:col-span-2 p-3 md:p-6 group hover:border-accent/40 transition-all duration-500 md:-rotate-[1deg]`}
           >
-            <div className="flex items-center justify-between mb-3">
-              <Users className="w-5 h-5 text-accent" />
+            <div className="flex items-center justify-between mb-2 md:mb-3">
+              <Users className="w-4 h-4 md:w-5 md:h-5 text-accent" />
               <span className="text-[10px] text-accent/70 font-cairo tracking-wider">
                 {t("مباشر", "LIVE")}
               </span>
             </div>
-            <p className="text-xs text-muted-foreground font-cairo uppercase tracking-wider mb-2">
+            <p className="text-[10px] md:text-xs text-muted-foreground font-cairo uppercase tracking-wider mb-1 md:mb-2 line-clamp-1">
               {t("تفاعل المشاهدين", "Viewer Engagement")}
             </p>
-            <p className="text-3xl font-bold text-foreground font-cairo">
+            <p className="text-2xl md:text-3xl font-bold text-foreground font-cairo">
               <Counter to={94} suffix="%" />
             </p>
-            <div className="flex items-center gap-1 mt-2 text-xs text-accent font-cairo">
+            <div className="flex items-center gap-1 mt-2 text-[10px] md:text-xs text-accent font-cairo">
               <Activity className="w-3 h-3" />
               <span>{t("معدل ممتاز", "Excellent rate")}</span>
             </div>
