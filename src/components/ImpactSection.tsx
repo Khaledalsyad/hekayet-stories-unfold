@@ -175,21 +175,21 @@ const ImpactSection = () => {
             whileHover={{ y: -8, scale: 1.02 }}
             className={`${glass} col-span-2 md:col-span-2 md:row-span-2 p-4 md:p-7 group hover:border-accent/40 transition-all duration-500 hover:shadow-[0_0_40px_hsl(30_90%_67%/0.25)] md:rotate-[-1deg]`}
           >
-            <div className="flex items-start justify-between mb-6">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center border border-accent/20">
-                <MapPin className="w-6 h-6 text-accent" />
+            <div className="flex items-start justify-between mb-3 md:mb-6">
+              <div className="w-9 h-9 md:w-12 md:h-12 rounded-xl bg-accent/10 flex items-center justify-center border border-accent/20">
+                <MapPin className="w-4 h-4 md:w-6 md:h-6 text-accent" />
               </div>
-              <span className="text-xs text-accent/70 font-cairo tracking-wider">
+              <span className="text-[10px] md:text-xs text-accent/70 font-cairo tracking-wider">
                 {t("أماكن", "PLACES")}
               </span>
             </div>
-            <div className="text-7xl md:text-8xl font-black text-gradient-accent font-cairo leading-none mb-3">
+            <div className="text-5xl md:text-8xl font-black text-gradient-accent font-cairo leading-none mb-2 md:mb-3">
               <Counter to={4} />
             </div>
-            <p className="text-foreground/80 font-cairo text-lg mb-2">
+            <p className="text-foreground/80 font-cairo text-sm md:text-lg mb-1 md:mb-2 line-clamp-1">
               {t("أماكن تم استكشافها", "Places Explored")}
             </p>
-            <p className="text-sm text-muted-foreground font-cairo">
+            <p className="text-[11px] md:text-sm text-muted-foreground font-cairo line-clamp-2">
               {t("سيوة، الفيوم، دهب، وادي الحيتان", "Siwa, Fayoum, Dahab, Wadi Al-Hitan")}
             </p>
             {/* corner glow */}
