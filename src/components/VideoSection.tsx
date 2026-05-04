@@ -10,7 +10,7 @@ import vGnai from "@/assets/video-gnai.jpg";
 import vSaladin from "@/assets/video-saladin.jpg";
 import vFjord from "@/assets/video-fjord.jpg";
 import vStCatherine from "@/assets/video-stcatherine.jpg";
-import vModawara from "@/assets/video-modawara.jpg";
+
 import vHitan from "@/assets/video-hitan.jpg";
 import vMagicLake from "@/assets/video-magiclake.jpg";
 import vLuxorTemple from "@/assets/video-luxor-temple.jpg";
@@ -115,16 +115,6 @@ const videos = ([
     thumb: vStCatherine,
   },
   // الفيوم
-  {
-    id: 9,
-    region: "الفيوم",
-    regionEn: "Fayoum",
-    titleAr: "جبل المدورة",
-    titleEn: "Al-Modawara Mountain",
-    descAr: "جبل المدورة في الفيوم.",
-    descEn: "Al-Modawara Mountain in Fayoum.",
-    thumb: vModawara,
-  },
   {
     id: 10,
     region: "الفيوم",
