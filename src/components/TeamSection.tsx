@@ -227,7 +227,7 @@ const TeamSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
           <p className="text-accent text-xs md:text-sm tracking-[0.3em] uppercase mb-4 font-cairo">
             {t("أعضاء المشروع", "Project Members")}
@@ -246,14 +246,14 @@ const TeamSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative mx-auto mb-16 max-w-sm"
+          className="relative mx-auto mb-8 md:mb-16 max-w-sm"
         >
-          <div className="relative rounded-3xl border border-accent/30 bg-white/[0.04] backdrop-blur-xl p-8 text-center shadow-[0_8px_40px_rgba(0,0,0,0.5)] overflow-hidden">
+          <div className="relative rounded-3xl border border-accent/30 bg-white/[0.04] backdrop-blur-xl p-5 md:p-8 text-center shadow-[0_8px_40px_rgba(0,0,0,0.5)] overflow-hidden">
             <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-accent/20 blur-3xl" />
-            <p className="text-accent text-xs tracking-[0.3em] uppercase mb-4 font-cairo relative">
+            <p className="text-accent text-[10px] md:text-xs tracking-[0.3em] uppercase mb-3 md:mb-4 font-cairo relative">
               {t("المشرف على المشروع", "Project Supervisor")}
             </p>
-            <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden border-2 border-accent shadow-[0_0_40px_hsl(var(--accent)/0.5)] mb-4">
+            <div className="relative w-20 h-20 md:w-32 md:h-32 mx-auto rounded-full overflow-hidden border-2 border-accent shadow-[0_0_40px_hsl(var(--accent)/0.5)] mb-3 md:mb-4">
               <img src={supervisorPhoto} alt="supervisor" className="w-full h-full object-cover" />
             </div>
             <h3 className="text-xl font-bold font-cairo text-foreground relative">
