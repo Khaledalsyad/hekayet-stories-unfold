@@ -154,7 +154,7 @@ const ImpactSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-8 md:mb-20"
         >
           <p className="text-accent text-xs md:text-sm tracking-[0.3em] uppercase mb-4 font-cairo">
             {t("الإحصائيات", "Statistics")}

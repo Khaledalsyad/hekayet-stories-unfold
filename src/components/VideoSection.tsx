@@ -211,9 +211,9 @@ const VideoSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
-          <p className="text-accent text-sm tracking-[0.2em] uppercase mb-3 font-cairo">
+          <p className="text-accent text-xs md:text-sm tracking-[0.2em] uppercase mb-2 md:mb-3 font-cairo">
             {t("شاهد الحلقات", "Watch Episodes")}
           </p>
           <h2 className="heading-cinematic font-cairo">
@@ -221,7 +221,34 @@ const VideoSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Mobile: horizontal snap scroll. Desktop: grid */}
+        <div className="md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory flex gap-3 pb-4 scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {videos.map((video) => (
+            <div
+              key={video.id}
+              onClick={() => setActiveVideo(video)}
+              className="cinematic-card cursor-pointer group snap-start shrink-0 w-[72%]"
+            >
+              <div className="relative overflow-hidden aspect-video">
+                <img src={video.thumb} alt={t(video.titleAr, video.titleEn)} className="w-full h-full object-cover" loading="lazy" />
+                <div className="absolute top-2 right-2 bg-accent/90 text-accent-foreground text-[10px] font-bold px-2 py-0.5 rounded font-cairo">
+                  {t(video.region, video.regionEn)}
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-accent/80 flex items-center justify-center">
+                    <Play className="w-4 h-4 text-accent-foreground ml-0.5" />
+                  </div>
+                </div>
+              </div>
+              <div className="p-3">
+                <h3 className="text-sm font-bold font-cairo text-foreground line-clamp-1">{t(video.titleAr, video.titleEn)}</h3>
+                <p className="text-muted-foreground text-[11px] mt-0.5 line-clamp-2 font-cairo">{t(video.descAr, video.descEn)}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {videos.map((video, i) => (
             <motion.div
               key={video.id}

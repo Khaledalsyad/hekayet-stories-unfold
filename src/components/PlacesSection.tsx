@@ -461,9 +461,9 @@ const PlacesSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
-          <p className="text-accent text-sm tracking-[0.2em] uppercase mb-3 font-cairo">
+          <p className="text-accent text-xs md:text-sm tracking-[0.2em] uppercase mb-2 md:mb-3 font-cairo">
             {t("استكشف", "Explore")}
           </p>
           <h2 className="heading-cinematic font-cairo">
@@ -471,7 +471,36 @@ const PlacesSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Mobile: horizontal snap scroll */}
+        <div className="md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory flex gap-3 pb-4 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+          {places.map((place) => {
+            const mood = moodConfig[place.mood];
+            return (
+              <div
+                key={place.id}
+                onClick={() => setActive(place)}
+                className="cinematic-card group cursor-pointer snap-start shrink-0 w-[60%]"
+              >
+                <div className="relative overflow-hidden aspect-[3/4]">
+                  <img src={place.img} alt={t(place.titleAr, place.titleEn)} className="w-full h-full object-cover" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                  <div className={`absolute top-2 ${lang === "ar" ? "right-2" : "left-2"} px-2 py-0.5 rounded-full text-[10px] font-bold font-cairo ${mood.classes}`}>
+                    <span className="me-1">{mood.emoji}</span>{t(mood.ar, mood.en)}
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <h3 className="text-sm font-bold font-cairo text-foreground line-clamp-1">{t(place.titleAr, place.titleEn)}</h3>
+                    <div className="flex items-center justify-between text-[11px] text-muted-foreground mt-1 font-cairo">
+                      <span className="flex items-center gap-1"><Clock className="w-3 h-3 text-accent" />{place.duration}</span>
+                      <span className="flex items-center gap-1"><Star className="w-3 h-3 fill-accent text-accent" />{place.rating}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {places.map((place, i) => {
             const mood = moodConfig[place.mood];
             return (
