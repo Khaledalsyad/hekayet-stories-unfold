@@ -1,5 +1,5 @@
 import { useLang } from "@/contexts/LanguageContext";
-import { Globe, Menu, X } from "lucide-react";
+import { Globe, Menu, X, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState } from "react";
