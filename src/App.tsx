@@ -6,6 +6,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index.tsx";
 import Stats from "./pages/Stats.tsx";
+import Present from "./pages/Present.tsx";
+import PresentMenu from "./pages/PresentMenu.tsx";
+import PresentSection from "./pages/PresentSection.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -20,6 +23,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/stats" element={<Stats />} />
+            <Route path="/present" element={<Present />} />
+            <Route path="/present/menu" element={<PresentMenu />} />
+            <Route path="/present/:section" element={<PresentSection />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
