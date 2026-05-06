@@ -94,11 +94,12 @@ const Navbar = () => {
                 </Link>
               ))}
               <Link
-                to="/#team"
+                to="/present"
                 onClick={() => setOpen(false)}
-                className="mt-2 text-center px-4 py-2.5 rounded-lg border border-foreground/30 text-foreground text-sm hover:bg-foreground/10 transition-all font-cairo"
+                className="mt-2 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-gradient-to-r from-accent to-[hsl(35_80%_55%)] text-background text-sm font-semibold shadow-[0_0_25px_hsl(30_90%_67%/0.4)] font-cairo"
               >
-                {t("تواصل معنا", "Contact Us")}
+                <Sparkles className="w-4 h-4" />
+                {t("وضع العرض", "Presentation")}
               </Link>
             </div>
           </motion.div>
