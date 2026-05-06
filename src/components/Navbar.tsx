@@ -29,7 +29,7 @@ const Navbar = () => {
           <img
             src={logo}
             alt={t("حكاية مكان", "Hekayet Makan")}
-            className="w-9 h-9 md:w-10 md:h-10 object-contain"
+            className="w-14 h-14 md:w-16 md:h-16 object-contain"
           />
           <span className="text-foreground text-base md:text-lg font-bold font-cairo">
             {t("حكاية مكان", "Hekayet Makan")}
